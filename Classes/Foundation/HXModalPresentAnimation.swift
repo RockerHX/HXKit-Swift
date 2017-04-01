@@ -1,6 +1,5 @@
 //
 //  HXModalPresentAnimation.swift
-//  XRDLoanServices
 //
 //  Created by RockerHX on 2017/3/8.
 //  Copyright © 2017年 XRD.Andy. All rights reserved.

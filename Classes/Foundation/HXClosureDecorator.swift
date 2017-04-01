@@ -1,6 +1,5 @@
 //
 //  HXClosureDecorator.swift
-//  XRDLoanServices
 //
 //  Created by RockerHX on 2017/2/26.
 //  Copyright © 2017年 XRD.Andy. All rights reserved.

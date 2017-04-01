@@ -1,6 +1,5 @@
 //
 //  HXMessage.swift
-//  XRDLoanServices
 //
 //  Created by XRD.Andy on 2017/2/20.
 //  Copyright © 2017年 XRD.Andy. All rights reserved.
