@@ -15,7 +15,7 @@ enum HXCaptchType {
 }
 
 
-class HXCaptchButton: UIButton {
+class HXCaptchButton: HXIBButton {
 
     // MARK: - Public Property -
     public var captchType = HXCaptchType.message
