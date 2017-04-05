@@ -41,16 +41,16 @@ extension String {
 // MARK: - Pass Word Validate
 extension String {
     
-    public func isAccount() -> (success: Bool, message: String) {
+    public func isAccount() -> (pass: Bool, message: String) {
         let pattern = "([a-zA-Z0-9]).{3,20}"
-        let success = validate(withPattern: pattern)
-        return (success, (success ? "" : HXStringValidate.Account.tips))
+        let pass = validate(withPattern: pattern)
+        return (pass, (pass ? "" : HXStringValidate.Account.tips))
     }
     
-    public func isPassWord() -> (success: Bool, message: String) {
+    public func isPassWord() -> (pass: Bool, message: String) {
         let pattern = "(?!^\\d+$)(?!^[a-zA-Z]+$).{5,20}"
-        let success = validate(withPattern: pattern)
-        return (success, (success ? "" : HXStringValidate.PassWord.tips))
+        let pass = validate(withPattern: pattern)
+        return (pass, (pass ? "" : HXStringValidate.PassWord.tips))
     }
 }
 
@@ -58,10 +58,10 @@ extension String {
 // MARK: - ID Card Number Validate
 extension String {
     
-    public func isChineseName() -> (success: Bool, message: String) {
+    public func isChineseName() -> (pass: Bool, message: String) {
         let pattern = "^([\\u4e00-\\u9fcb\\·]{1,10})$"
-        let success = validate(withPattern: pattern)
-        return (success, (success ? "" : HXStringValidate.ChineseName.tips))
+        let pass = validate(withPattern: pattern)
+        return (pass, (pass ? "" : HXStringValidate.ChineseName.tips))
     }
 }
 
@@ -69,10 +69,10 @@ extension String {
 // MARK: - ID Card Number Validate
 extension String {
     
-    public func isIDNumber() -> (success: Bool, message: String) {
+    public func isIDNumber() -> (pass: Bool, message: String) {
         let pattern = "(^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$)|(^[1-9]\\d{5}\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{2}$)"
-        let success = validate(withPattern: pattern)
-        return (success, (success ? "" : HXStringValidate.IDNumber.tips))
+        let pass = validate(withPattern: pattern)
+        return (pass, (pass ? "" : HXStringValidate.IDNumber.tips))
     }
 }
 
@@ -80,10 +80,10 @@ extension String {
 // MARK: - Email Validate
 extension String {
     
-    public func isEmail() -> (success: Bool, message: String) {
+    public func isEmail() -> (pass: Bool, message: String) {
         let pattern = "^(([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5}){1,25})$"
-        let success = validate(withPattern: pattern)
-        return (success, (success ? "" : HXStringValidate.Email.tips))
+        let pass = validate(withPattern: pattern)
+        return (pass, (pass ? "" : HXStringValidate.Email.tips))
     }
 }
 
@@ -91,20 +91,20 @@ extension String {
 // MARK: - Phone Number
 extension String {
     
-    public func isMobileNumber() -> (success: Bool, message: String) {
+    public func isMobileNumber() -> (pass: Bool, message: String) {
         let pattern = "^(((1)\\d{10}))$"
-        let success = validate(withPattern: pattern)
-        return (success, (success ? "" : HXStringValidate.Mobile.tips))
+        let pass = validate(withPattern: pattern)
+        return (pass, (pass ? "" : HXStringValidate.Mobile.tips))
     }
     
-    public func isTelephoneNumber() -> (success: Bool, message: String) {
+    public func isTelephoneNumber() -> (pass: Bool, message: String) {
         let pattern = "^(0\\d{2,3}[-| ]?)?(\\d{6,8})([-| ]?\\d{3,5})?$"
-        let success = validate(withPattern: pattern)
-        return (success, (success ? "" : HXStringValidate.TelPhone.tips))
+        let pass = validate(withPattern: pattern)
+        return (pass, (pass ? "" : HXStringValidate.TelPhone.tips))
     }
     
-    public func isPhoneNumber() -> (success: Bool, message: String) {
-        let success = isMobileNumber().success || isTelephoneNumber().success
-        return (success, (success ? "" : HXStringValidate.Phone.tips))
+    public func isPhoneNumber() -> (pass: Bool, message: String) {
+        let pass = isMobileNumber().pass || isTelephoneNumber().pass
+        return (pass, (pass ? "" : HXStringValidate.Phone.tips))
     }
 }
