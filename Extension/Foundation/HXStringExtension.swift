@@ -18,6 +18,7 @@ enum HXStringValidate: String {
     case Mobile      = "请输入正确手机号码！"
     case TelPhone    = "请输入正确座机号码！"
     case Phone       = "请输入正确电话号码！"
+    case Money       = "请输入正确金额！"
 
     var tips: String {
         get {
@@ -106,5 +107,16 @@ extension String {
     public func isPhoneNumber() -> (pass: Bool, message: String) {
         let pass = isMobileNumber().pass || isTelephoneNumber().pass
         return (pass, (pass ? "" : HXStringValidate.Phone.tips))
+    }
+}
+
+
+// MARK: - Money Validate
+extension String {
+
+    public func isMoney() -> (pass: Bool, message: String) {
+        let pattern = "^(0|[1-9][0-9]*)$"
+        let pass = validate(withPattern: pattern)
+        return (pass, (pass ? "" : HXStringValidate.Money.tips))
     }
 }
