@@ -18,7 +18,7 @@ enum HXStringValidate: String {
     case Mobile      = "请输入正确手机号码！"
     case TelPhone    = "请输入正确座机号码！"
     case Phone       = "请输入正确电话号码！"
-    
+
     var tips: String {
         get {
             return self.rawValue
@@ -29,7 +29,7 @@ enum HXStringValidate: String {
 
 // MARK: - Pass Word Validate
 extension String {
-    
+
     fileprivate func validate(withPattern pattern: String) -> Bool {
         let regex = try! NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options(rawValue: 0))
         let result = regex.firstMatch(in: self, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, characters.count))
@@ -40,13 +40,13 @@ extension String {
 
 // MARK: - Pass Word Validate
 extension String {
-    
+
     public func isAccount() -> (pass: Bool, message: String) {
         let pattern = "([a-zA-Z0-9]).{3,20}"
         let pass = validate(withPattern: pattern)
         return (pass, (pass ? "" : HXStringValidate.Account.tips))
     }
-    
+
     public func isPassWord() -> (pass: Bool, message: String) {
         let pattern = "(?!^\\d+$)(?!^[a-zA-Z]+$).{5,20}"
         let pass = validate(withPattern: pattern)
@@ -55,9 +55,9 @@ extension String {
 }
 
 
-// MARK: - ID Card Number Validate
+// MARK: - Name Validate
 extension String {
-    
+
     public func isChineseName() -> (pass: Bool, message: String) {
         let pattern = "^([\\u4e00-\\u9fcb\\·]{1,10})$"
         let pass = validate(withPattern: pattern)
@@ -79,7 +79,7 @@ extension String {
 
 // MARK: - Email Validate
 extension String {
-    
+
     public func isEmail() -> (pass: Bool, message: String) {
         let pattern = "^(([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5}){1,25})$"
         let pass = validate(withPattern: pattern)
@@ -90,19 +90,19 @@ extension String {
 
 // MARK: - Phone Number
 extension String {
-    
+
     public func isMobileNumber() -> (pass: Bool, message: String) {
         let pattern = "^(((1)\\d{10}))$"
         let pass = validate(withPattern: pattern)
         return (pass, (pass ? "" : HXStringValidate.Mobile.tips))
     }
-    
+
     public func isTelephoneNumber() -> (pass: Bool, message: String) {
         let pattern = "^(0\\d{2,3}[-| ]?)?(\\d{6,8})([-| ]?\\d{3,5})?$"
         let pass = validate(withPattern: pattern)
         return (pass, (pass ? "" : HXStringValidate.TelPhone.tips))
     }
-    
+
     public func isPhoneNumber() -> (pass: Bool, message: String) {
         let pass = isMobileNumber().pass || isTelephoneNumber().pass
         return (pass, (pass ? "" : HXStringValidate.Phone.tips))
