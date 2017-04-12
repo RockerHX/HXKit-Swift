@@ -19,6 +19,7 @@ enum HXStringValidate: String {
     case TelPhone    = "请输入正确座机号码！"
     case Phone       = "请输入正确电话号码！"
     case Money       = "请输入正确金额！"
+    case BankCardID  = "请输入正确银行卡号！"
 
     var tips: String {
         get {
@@ -128,6 +129,6 @@ extension String {
     public func isBankCardID() -> (pass: Bool, message: String) {
         let pattern = "^(\\d{19})$"
         let pass = validate(withPattern: pattern)
-        return (pass, (pass ? "" : HXStringValidate.Money.tips))
+        return (pass, (pass ? "" : HXStringValidate.BankCardID.tips))
     }
 }
