@@ -120,3 +120,14 @@ extension String {
         return (pass, (pass ? "" : HXStringValidate.Money.tips))
     }
 }
+
+
+// MARK: - Card Validate
+extension String {
+
+    public func isBankCardID() -> (pass: Bool, message: String) {
+        let pattern = "^(\\d{19})$"
+        let pass = validate(withPattern: pattern)
+        return (pass, (pass ? "" : HXStringValidate.Money.tips))
+    }
+}
