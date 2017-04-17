@@ -12,6 +12,7 @@ import Foundation
 enum HXStringValidate: String {
     case Account     = "请输入正确账号！"
     case PassWord    = "密码至少六位，必须数字加字母组合！"
+    case Captch      = "验证码至少四位！"
     case ChineseName = "请输入正确的中文名！"
     case IDNumber    = "请输入正确的身份证号码！"
     case Email       = "请输入正确的邮箱！"
@@ -53,6 +54,12 @@ extension String {
         let pattern = "(?!^\\d+$)(?!^[a-zA-Z]+$).{5,20}"
         let pass = validate(withPattern: pattern)
         return (pass, (pass ? "" : HXStringValidate.PassWord.tips))
+    }
+
+    public func isCaptch() -> (pass: Bool, message: String) {
+        let pattern = "([a-zA-Z0-9]).{3,6}"
+        let pass = validate(withPattern: pattern)
+        return (pass, (pass ? "" : HXStringValidate.Captch.tips))
     }
 }
 
