@@ -19,7 +19,7 @@ class HXCaptchButton: HXIBButton {
 
     // MARK: - Public Property -
     public var captchType = HXCaptchType.message
-    public var duration = 10
+    public var duration = 60
 
     // MARK: - Private Property -
     fileprivate var defaultTitle = "点击获取"
