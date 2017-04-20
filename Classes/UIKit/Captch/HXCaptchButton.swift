@@ -23,6 +23,7 @@ class HXCaptchButton: HXIBButton {
 
     // MARK: - Private Property -
     fileprivate var defaultTitle = "点击获取"
+    fileprivate var defaultColor: UIColor?
 
     fileprivate let timer = DispatchSource.makeTimerSource()
 
@@ -43,6 +44,7 @@ class HXCaptchButton: HXIBButton {
         DispatchQueue.main.sync {
             setTitle(defaultTitle, for: .normal)
             isEnabled = true
+            backgroundColor = defaultColor
         }
     }
 
@@ -65,6 +67,8 @@ class HXCaptchButton: HXIBButton {
 
     // MARK: - Configure Method -
     fileprivate func configure() {
+
+        defaultColor = backgroundColor
         if let title = title(for: .normal) {
             guard title.isEmpty else {
                 defaultTitle = title
@@ -76,10 +80,12 @@ class HXCaptchButton: HXIBButton {
 
     // MARK: - Private Methods -
     fileprivate func countDown() {
+
         if isEnabled {
             if let start = startClosure {
                 if start(self) {
                     isEnabled = false
+                    backgroundColor = UIColor.lightGray
 
                     var count = duration
                     timer.scheduleRepeating(deadline: .now(), interval: .seconds(1), leeway: .milliseconds(40))
@@ -94,6 +100,7 @@ class HXCaptchButton: HXIBButton {
     }
 
     fileprivate func down(count: Int) {
+
         DispatchQueue.main.sync {
             setTitle("\(count)s", for: .normal)
         }
