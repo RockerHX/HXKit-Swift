@@ -13,12 +13,26 @@ import UIKit
 extension UIViewController {
 
     public func showActionSheet(withTitle title: String, message: String? = nil, otherActions: Array<UIAlertAction>) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+
         for action in otherActions {
-            alertController.addAction(action)
+            controller.addAction(action)
         }
 
-        present(alertController, animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)
+    }
+}
+
+
+extension UIViewController {
+
+    public func showAlert(withTitle title: String, message: String? = nil, otherActions: Array<UIAlertAction>) {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        for action in otherActions {
+            controller.addAction(action)
+        }
+
+        present(controller, animated: true, completion: nil)
     }
 }
