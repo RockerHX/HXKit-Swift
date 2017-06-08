@@ -64,17 +64,15 @@ class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
                     containerView.addSubview(toView)
                     toView.startCenter(byModalDirection: direction)
 
+                    if self.hasMask {
+                        containerView.backgroundColor = UIColor(white: 0.1, alpha: 0.5)
+                    }
+
                     UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseInOut, animations: {
                         toView.endCenter(byModalDirection: self.direction)
                     }, completion: { (finished) in
                         let isCancelled = transitionContext.transitionWasCancelled
                         transitionContext.completeTransition(!isCancelled)
-
-                        if self.hasMask {
-                            UIView.animate(withDuration: 0.2, animations: {
-                                containerView.backgroundColor = UIColor(white: 0.1, alpha: 0.5)
-                            }, completion: nil)
-                        }
                     })
                 }
 
