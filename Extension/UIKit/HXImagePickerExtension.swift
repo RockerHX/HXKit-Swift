@@ -56,9 +56,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
             case .savedPhotosAlbum:
                 message = "你确认你的手机里有相片库？？？"
             }
-            if let content = message {
-                showMessage(.warning, message: content)
-            }
+            assert(message != nil, message!)
         } else {
             let picker = UIImagePickerController()
             picker.delegate = self
