@@ -1,7 +1,7 @@
 //
 //  RectExtension.swift
 //
-//  Created by XRD.Andy on 2017/2/10.
+//  Created by RockerHX on 2017/2/10.
 //  Copyright © 2017年 XRD.Andy. All rights reserved.
 //
 

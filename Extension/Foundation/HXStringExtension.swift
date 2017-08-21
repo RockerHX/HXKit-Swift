@@ -1,7 +1,7 @@
 //
 //  HXStringExtension.swift
 //
-//  Created by XRD.Andy on 2017/3/2.
+//  Created by RockerHX on 2017/3/2.
 //  Copyright © 2017年 XRD.Andy. All rights reserved.
 //
 

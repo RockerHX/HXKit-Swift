@@ -1,7 +1,7 @@
 //
 //  HXColor.swift
 //
-//  Created by XRD.Andy on 2017/2/22.
+//  Created by RockerHX on 2017/2/22.
 //  Copyright © 2017年 XRD.Andy. All rights reserved.
 //
 
