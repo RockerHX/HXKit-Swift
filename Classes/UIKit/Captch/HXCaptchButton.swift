@@ -88,7 +88,7 @@ class HXCaptchButton: HXIBButton {
                     backgroundColor = UIColor.lightGray
 
                     var count = duration
-                    timer.scheduleRepeating(deadline: .now(), interval: .seconds(1), leeway: .milliseconds(40))
+                    timer.schedule(deadline: .now(), repeating: .seconds(1), leeway: .milliseconds(40))
                     timer.setEventHandler(handler: { [weak self] in
                         self?.down(count: count)
                         count -= 1
