@@ -16,7 +16,7 @@ extension UIColor {
         
         if (cString.hasPrefix("#")) {
             let index = cString.index(cString.startIndex, offsetBy:1)
-            cString = cString.substring(from: index)
+            cString = String(cString[index...])
         }
 
         if (cString.characters.count != 6) {
@@ -24,12 +24,12 @@ extension UIColor {
         }
 
         let rIndex = cString.index(cString.startIndex, offsetBy: 2)
-        let rString = cString.substring(to: rIndex)
-        let otherString = cString.substring(from: rIndex)
+        let rString = String(cString[..<rIndex])
+        let otherString = String(cString[rIndex...])
         let gIndex = otherString.index(otherString.startIndex, offsetBy: 2)
-        let gString = otherString.substring(to: gIndex)
+        let gString = String(otherString[..<gIndex])
         let bIndex = cString.index(cString.endIndex, offsetBy: -2)
-        let bString = cString.substring(from: bIndex)
+        let bString = String(cString[bIndex...])
 
         var red:CUnsignedInt = 0, green:CUnsignedInt = 0, blue:CUnsignedInt = 0;
         Scanner(string: rString).scanHexInt32(&red)
