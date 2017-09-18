@@ -13,4 +13,8 @@ import UIKit
 public extension UIViewController {
 
     @IBAction public func unwindToPreviousController(_ segue: UIStoryboardSegue) {}
+    
+    @IBAction public func unwindToPreviousSence(_ segue: UIStoryboardSegue) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
