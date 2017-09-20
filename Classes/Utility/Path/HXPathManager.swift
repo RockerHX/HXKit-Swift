@@ -9,7 +9,7 @@
 import UIKit
 
 
-enum HXPathDirectory {
+enum HXDirectory {
     case Home
     case Document
     case Library
@@ -43,22 +43,22 @@ class HXPathManager: NSObject {
     static let manager = HXPathManager()
 
     // MARK: - Public Methods
-    public func directoryPath(_ directory: HXPathDirectory) -> String? {
+    public func path(withDirectory directory: HXDirectory) -> String? {
         return directory.path
     }
 
-    public func store(withDirectory directory: HXPathDirectory = .Caches, relativePath: String, fileName: String) -> String? {
+    public func storePath(withDirectory directory: HXDirectory = .Caches, relativePath: String, fileName: String) -> String? {
         if let directoryPath = directory.path {
             let path = directoryPath + relativePath
 
-            if self.fileExists(atPath: path) {
+            if fileExists(atPath: path) {
                 return path + "/" + fileName
             }
         }
         return nil
     }
 
-    public func remove(withDirectory directory: HXPathDirectory = .Caches, relativePath: String, fileName: String) {
+    public func remove(withDirectory directory: HXDirectory = .Caches, relativePath: String, fileName: String) {
         if let directoryPath = directory.path {
             let path = directoryPath + relativePath + "/" + fileName
 
@@ -68,8 +68,7 @@ class HXPathManager: NSObject {
         }
     }
 
-    // MARK: - Private Methods
-    private func fileExists(atPath path: String) -> Bool {
+    public func fileExists(atPath path: String) -> Bool {
         let fileManager = FileManager.default
 
         if fileManager.fileExists(atPath: path) {
@@ -83,4 +82,8 @@ class HXPathManager: NSObject {
         }
         return true
     }
+
+    // MARK: - Private Methods
+
 }
+
