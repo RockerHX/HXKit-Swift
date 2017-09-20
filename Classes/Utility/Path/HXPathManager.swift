@@ -68,19 +68,21 @@ class HXPathManager: NSObject {
         }
     }
 
-    public func fileExists(atPath path: String) -> Bool {
+    public func fileExists(atPath path: String, created: Bool = false) -> Bool {
         let fileManager = FileManager.default
 
         if fileManager.fileExists(atPath: path) {
             return true
         }
 
-        do {
-            try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
-        } catch {
-            return false
+        if created {
+            do {
+                try fileManager.createDirectory(atPath: path, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                return false
+            }
         }
-        return true
+        return false
     }
 
     // MARK: - Private Methods
