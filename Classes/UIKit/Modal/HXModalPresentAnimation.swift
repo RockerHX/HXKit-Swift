@@ -29,7 +29,7 @@ class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     public var ratio: Float
 
     // MARK: - Private Property -
-    private var toViewController: UIViewController?
+    private var presented: UIViewController?
 
     // MARK: - Init Methods -
     public init(withDirection direction: HXMoalDirection = .bottom, duration: TimeInterval = HXModalDefaultDuration, hasMask mask: Bool = true, ratio: Float = 1.0) {
@@ -46,7 +46,7 @@ class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
     // MARK: - Private Methods -
     @objc private func backgroundTapAction() {
-        toViewController?.dismiss(animated: true, completion: nil)
+        presented?.dismiss(animated: true, completion: nil)
     }
 
     // MARK: - UIViewControllerAnimatedTransitioning -
@@ -59,27 +59,26 @@ class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
         if let toViewController = transitionContext.viewController(forKey: .to),
             let fromViewController = transitionContext.viewController(forKey: .from) {
 
-            self.toViewController = toViewController
+            presented = toViewController
             if let toView = toViewController.view, let fromView = fromViewController.view {
                 let containerView = transitionContext.containerView
                 let duration = transitionDuration(using: transitionContext)
 
                 if toViewController.isBeingPresented {
-                    let backgroundView = UIView(frame: containerView.frame)
-                    backgroundView.isUserInteractionEnabled = true
-                    backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundTapAction)))
-
-                    containerView.addSubview(backgroundView)
-                    containerView.addSubview(toView)
-                    toView.startCenter(byModalDirection: direction)
-
-                    if self.hasMask {
+                    if hasMask {
+                        let backgroundView = UIView(frame: containerView.frame)
+                        containerView.addSubview(backgroundView)
+                        backgroundView.isUserInteractionEnabled = true
+                        backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundTapAction)))
                         backgroundView.backgroundColor = UIColor(white: 0.1, alpha: 0.5)
                         backgroundView.alpha = 0.0
                         UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseInOut, animations: {
                             backgroundView.alpha = 1.0
                         }, completion: nil)
                     }
+                    
+                    containerView.addSubview(toView)
+                    toView.startCenter(byModalDirection: direction)
 
                     UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseInOut, animations: {
                         toView.endCenter(byModalDirection: self.direction, ratio: self.ratio)
