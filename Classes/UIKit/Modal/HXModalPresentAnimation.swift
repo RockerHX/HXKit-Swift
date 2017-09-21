@@ -29,6 +29,7 @@ class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     public var ratio: Float
 
     // MARK: - Private Property -
+    private var backgroundView: UIView?
     private var presented: UIViewController?
 
     // MARK: - Init Methods -
@@ -66,14 +67,14 @@ class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
                 if toViewController.isBeingPresented {
                     if hasMask {
-                        let backgroundView = UIView(frame: containerView.frame)
-                        containerView.addSubview(backgroundView)
-                        backgroundView.isUserInteractionEnabled = true
-                        backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundTapAction)))
-                        backgroundView.backgroundColor = UIColor(white: 0.1, alpha: 0.5)
-                        backgroundView.alpha = 0.0
+                        backgroundView = UIView(frame: containerView.frame)
+                        containerView.addSubview(backgroundView!)
+                        backgroundView?.isUserInteractionEnabled = true
+                        backgroundView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundTapAction)))
+                        backgroundView?.backgroundColor = UIColor(white: 0.1, alpha: 0.5)
+                        backgroundView?.alpha = 0.0
                         UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseInOut, animations: {
-                            backgroundView.alpha = 1.0
+                            self.backgroundView?.alpha = 1.0
                         }, completion: nil)
                     }
                     
@@ -89,7 +90,13 @@ class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
                 }
 
                 if fromViewController.isBeingDismissed {
-                    UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseInOut, animations: {
+                    let dissmisAnimationDuration = duration * 0.5
+                    if hasMask {
+                        UIView.animate(withDuration: dissmisAnimationDuration, delay: 0.0, options: .curveEaseInOut, animations: {
+                            self.backgroundView?.alpha = 0.0
+                        }, completion: nil)
+                    }
+                    UIView.animate(withDuration: dissmisAnimationDuration, delay: 0.0, options: .curveEaseInOut, animations: {
                         fromView.startCenter(byModalDirection: self.direction)
                     }, completion: { (finished) in
                         let isCancelled = transitionContext.transitionWasCancelled
