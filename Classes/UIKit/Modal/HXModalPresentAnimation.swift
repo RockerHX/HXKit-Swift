@@ -23,53 +23,66 @@ fileprivate let HXModalDefaultDuration: TimeInterval = 0.5
 class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
     // MARK: - Public Property -
-    public var direction: HXMoalDirection {
-        get {
-            return modalDirection
-        }
-    }
-
-    public var duration: TimeInterval {
-        get {
-            return transitionDuration
-        }
-    }
+    private(set) var direction: HXMoalDirection
+    private(set) var duration: TimeInterval
     public var hasMask: Bool
+    public var ratio: Float
 
-    // MARK: - Private Methods -
-    fileprivate var modalDirection: HXMoalDirection
-    fileprivate var transitionDuration: TimeInterval
+    // MARK: - Private Property -
+    private var toViewController: UIViewController?
 
     // MARK: - Init Methods -
-    public init(withDirection direction: HXMoalDirection = .bottom, duration: TimeInterval = HXModalDefaultDuration, hasMask mask: Bool = true) {
-        self.modalDirection = direction
-        self.transitionDuration = duration
+    public init(withDirection direction: HXMoalDirection = .bottom, duration: TimeInterval = HXModalDefaultDuration, hasMask mask: Bool = true, ratio: Float = 1.0) {
+        self.direction = direction
+        self.duration = duration
         self.hasMask = mask
+
+        if ratio >= 0 && ratio <= 1 {
+            self.ratio = ratio
+        } else {
+            self.ratio = 1.0
+        }
+    }
+
+    // MARK: - Private Methods -
+    @objc private func backgroundTapAction() {
+        toViewController?.dismiss(animated: true, completion: nil)
     }
 
     // MARK: - UIViewControllerAnimatedTransitioning -
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return transitionDuration
+        return duration
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 
-        if let toViewController = transitionContext.viewController(forKey: .to), let fromViewController = transitionContext.viewController(forKey: .from) {
+        if let toViewController = transitionContext.viewController(forKey: .to),
+            let fromViewController = transitionContext.viewController(forKey: .from) {
 
+            self.toViewController = toViewController
             if let toView = toViewController.view, let fromView = fromViewController.view {
                 let containerView = transitionContext.containerView
                 let duration = transitionDuration(using: transitionContext)
 
                 if toViewController.isBeingPresented {
+                    let backgroundView = UIView(frame: containerView.frame)
+                    backgroundView.isUserInteractionEnabled = true
+                    backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundTapAction)))
+
+                    containerView.addSubview(backgroundView)
                     containerView.addSubview(toView)
                     toView.startCenter(byModalDirection: direction)
 
                     if self.hasMask {
-                        containerView.backgroundColor = UIColor(white: 0.1, alpha: 0.5)
+                        backgroundView.backgroundColor = UIColor(white: 0.1, alpha: 0.5)
+                        backgroundView.alpha = 0.0
+                        UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseInOut, animations: {
+                            backgroundView.alpha = 1.0
+                        }, completion: nil)
                     }
 
                     UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseInOut, animations: {
-                        toView.endCenter(byModalDirection: self.direction)
+                        toView.endCenter(byModalDirection: self.direction, ratio: self.ratio)
                     }, completion: { (finished) in
                         let isCancelled = transitionContext.transitionWasCancelled
                         transitionContext.completeTransition(!isCancelled)
@@ -106,13 +119,13 @@ extension UIView {
         }
     }
 
-    fileprivate func endCenter(byModalDirection direction: HXMoalDirection) {
+    fileprivate func endCenter(byModalDirection direction: HXMoalDirection, ratio: Float) {
 
         switch direction {
         case .top, .bottom:
-            center.y = CGFloat(fabs(center.y / 3))
+            center.y = CGFloat(fabs(center.y / CGFloat(3 * ratio)))
         case .left, .right:
-            center.x = CGFloat(fabs(center.x / 3))
+            center.x = CGFloat(fabs(center.x / CGFloat(3 * ratio)))
         }
     }
 }
