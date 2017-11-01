@@ -35,7 +35,7 @@ extension String {
 
     fileprivate func validate(withPattern pattern: String) -> Bool {
         let regex = try! NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options(rawValue: 0))
-        let result = regex.firstMatch(in: self, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, characters.count))
+        let result = regex.firstMatch(in: self, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: NSMakeRange(0, count))
         return ((result == nil) ? false : true)
     }
 }

@@ -19,7 +19,7 @@ extension UIColor {
             cString = String(cString[index...])
         }
 
-        if (cString.characters.count != 6) {
+        if (cString.count != 6) {
             return UIColor.red
         }
 
