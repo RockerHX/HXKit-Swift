@@ -1,8 +1,11 @@
 //
 //  UIViewAnimator.swift
+//  HXKit-Swift
 //
 //  Created by RockerHX on 2017/8/21.
 //  Copyright © 2017年 RockerHX. All rights reserved.
+//
+//  GitHub: https://github.com/rockerhx
 //
 
 

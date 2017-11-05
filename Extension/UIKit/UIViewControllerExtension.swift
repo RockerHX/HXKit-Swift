@@ -1,9 +1,11 @@
 //
 //  UIViewControllerExtension.swift
-//  Ding
+//  HXKit-Swift
 //
 //  Created by RockerHX on 2017/9/3.
 //  Copyright © 2017年 RockerHX. All rights reserved.
+//
+//  GitHub: https://github.com/rockerhx
 //
 
 

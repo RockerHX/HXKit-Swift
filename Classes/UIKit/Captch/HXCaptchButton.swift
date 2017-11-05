@@ -1,8 +1,11 @@
 //
 //  HXCaptchButton.swift
+//  HXKit-Swift
 //
 //  Created by RockerHX on 2017/4/6.
-//  Copyright © 2017年 XRD.Andy. All rights reserved.
+//  Copyright © 2017年 RockerHX. All rights reserved.
+//
+//  GitHub: https://github.com/rockerhx
 //
 
 

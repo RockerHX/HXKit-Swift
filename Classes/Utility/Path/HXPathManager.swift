@@ -1,10 +1,13 @@
 //
 //  HXPathManager.swift
-//  EShop
+//  HXKit-Swift
 //
 //  Created by ShiCang on 16/5/7.
-//  Copyright © 2016年 Cave. All rights reserved.
+//  Copyright © 2017年 RockerHX. All rights reserved.
 //
+//  GitHub: https://github.com/rockerhx
+//
+
 
 import UIKit
 
