@@ -16,7 +16,7 @@ protocol HXStoryBoardProtocol {
 
     associatedtype Element where Element: UIViewController
 
-    func instance() -> Self.Element
+    static func instance() -> Self.Element
 }
 
 
@@ -26,7 +26,7 @@ class HXStoryBoardManager {
         return self.viewController(withIdentifier: identifier, storyBoard: storyBoard) as? UINavigationController
     }
     
-    static func viewController(withClass viewController: UIViewController, storyBoard: String = "") -> UIViewController {
+    static func viewController(withClass viewController: UIViewController.Type, storyBoard: String = "") -> UIViewController {
         let identifier = String(describing: viewController)
         return self.viewController(withIdentifier: identifier, storyBoard: storyBoard)
     }
