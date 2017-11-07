@@ -20,9 +20,9 @@ struct HXPickerModel {
         case third  = 3
     }
 
-    var first: [String]?
-    var second: [String]?
-    var third: [String]?
+    public var first: [String]?
+    public var second: [String]?
+    public var third: [String]?
 
     public var firstDidSelectRow: Int = 0
     public var secondDidSelectRow: Int = 0
@@ -30,16 +30,16 @@ struct HXPickerModel {
 
     public func components() -> Int {
         var count = 0
-        if let _ = first {
-            count += 1
-        }
-        if let _ = second {
-            count += 1
-        }
-        if let _ = third {
-            count += 1
-        }
+        if let _ = first { count += 1 }
+        if let _ = second { count += 1 }
+        if let _ = third { count += 1 }
         return count
+    }
+
+    public init(first: [String]? = nil, second: [String]? = nil, third: [String]? = nil) {
+        self.first = first
+        self.second = second
+        self.third = third
     }
 }
 
