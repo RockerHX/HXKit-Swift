@@ -26,6 +26,7 @@ class HXDatePickerViewController: UIViewController {
 
     // MARK: - Public Property -
     public var delegate: HXDatePickerViewControllerDelegate?
+    public var tag: Any?
 
     // MARK: - Private Property -
     private let animation = HXModalPresentAnimation(duration: 0.3, displayHeight: 216)
