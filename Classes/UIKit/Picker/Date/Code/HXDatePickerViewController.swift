@@ -26,6 +26,7 @@ class HXDatePickerViewController: UIViewController {
 
     // MARK: - Public Property -
     public var delegate: HXDatePickerViewControllerDelegate?
+    public var datePickerMode: UIDatePickerMode?
     public var tag: Any?
 
     // MARK: - Private Property -
@@ -58,6 +59,10 @@ class HXDatePickerViewController: UIViewController {
     // MARK: - Private Methods -
     private func configure() {
         delegate?.datePickerView(datePicker: self, selectedDate: datePicker.date)
+
+        if let mode = datePickerMode {
+            datePicker.datePickerMode = mode
+        }
 
         // 根据预设语言动态显示时间格式以及语言
         guard let preferredLanguage = Locale.preferredLanguages.first else { return }
