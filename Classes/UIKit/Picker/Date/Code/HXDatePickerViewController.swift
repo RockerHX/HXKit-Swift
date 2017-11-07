@@ -58,6 +58,10 @@ class HXDatePickerViewController: UIViewController {
     // MARK: - Private Methods -
     private func configure() {
         delegate?.datePickerView(datePicker: self, selectedDate: datePicker.date)
+
+        // 根据预设语言动态显示时间格式以及语言
+        guard let preferredLanguage = Locale.preferredLanguages.first else { return }
+        datePicker.locale = Locale(identifier: preferredLanguage)
     }
 }
 
