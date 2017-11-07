@@ -57,6 +57,7 @@ class HXPickerViewController: UIViewController {
 
     // MARK: - Public Property -
     public var delegate: HXPickerViewControllerDelegate?
+    public var tag: Any?
     public var model: HXPickerModel? {
         didSet {
             pickerView?.reloadAllComponents()
