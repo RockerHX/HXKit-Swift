@@ -57,6 +57,7 @@ class HXDatePickerViewController: UIViewController {
     // MARK: - Public Methods -
     // MARK: - Private Methods -
     private func configure() {
+        delegate?.datePickerView(datePicker: self, selectedDate: datePicker.date)
     }
 }
 
