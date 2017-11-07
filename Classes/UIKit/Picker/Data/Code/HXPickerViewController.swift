@@ -66,6 +66,7 @@ class HXPickerViewController: UIViewController {
 
     // MARK: - Private Property -
     private let animation = HXModalPresentAnimation(duration: 0.3, displayHeight: 216)
+    private var selected = false
 
     // MARK: - View Controller Life Cycle -
     required init?(coder aDecoder: NSCoder) {
@@ -140,6 +141,7 @@ extension HXPickerViewController: UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selected = true
         delegate?.pickerView(pickerViewController: self, didSelectRow: row, inComponent: component)
     }
 }
@@ -156,6 +158,9 @@ extension HXPickerViewController: UIViewControllerTransitioningDelegate {
     }
 
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if !selected {
+            delegate?.pickerView(pickerViewController: self, didSelectRow: 0, inComponent: 0)
+        }
         return presentAnimation(forPresented: dismissed)
     }
 }
