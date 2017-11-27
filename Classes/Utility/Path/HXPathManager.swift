@@ -54,7 +54,7 @@ class HXPathManager: NSObject {
         if let directoryPath = directory.path {
             let path = directoryPath + relativePath
 
-            if fileExists(atPath: path) {
+            if fileExists(atPath: path, created: true) {
                 return path + "/" + fileName
             }
         }
