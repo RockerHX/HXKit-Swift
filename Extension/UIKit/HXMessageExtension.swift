@@ -30,7 +30,7 @@ extension UIViewController {
         if let content = message {
             switch theme {
             case .info:
-                let info = MessageView.viewFromNib(layout: .MessageView)
+                let info = MessageView.viewFromNib(layout: .messageView)
                 info.configureTheme(.info)
                 info.button?.isHidden = true
                 info.configureContent(title: HXMessage.info.title, body: content)
@@ -38,7 +38,7 @@ extension UIViewController {
                 infoConfig.duration = .seconds(seconds: 0.25)
                 SwiftMessages.show(config: infoConfig, view: info)
             case .success:
-                let success = MessageView.viewFromNib(layout: .CardView)
+                let success = MessageView.viewFromNib(layout: .cardView)
                 success.configureTheme(.success)
                 success.configureDropShadow()
                 success.configureContent(title: HXMessage.success.title, body: content)
@@ -48,7 +48,7 @@ extension UIViewController {
                 successConfig.presentationContext = .window(windowLevel: UIWindowLevelNormal)
                 SwiftMessages.show(config: successConfig, view: success)
             case .warning:
-                let warning = MessageView.viewFromNib(layout: .CardView)
+                let warning = MessageView.viewFromNib(layout: .cardView)
                 warning.configureTheme(.warning)
                 warning.configureDropShadow()
                 
@@ -60,7 +60,7 @@ extension UIViewController {
                 warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
                 SwiftMessages.show(config: warningConfig, view: warning)
             case .error:
-                let error = MessageView.viewFromNib(layout: .TabView)
+                let error = MessageView.viewFromNib(layout: .tabView)
                 error.configureTheme(.error)
                 error.configureContent(title: HXMessage.error.title, body: content)
                 error.button?.setTitle("Stop", for: .normal)
