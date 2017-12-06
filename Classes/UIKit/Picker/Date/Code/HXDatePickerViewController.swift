@@ -73,8 +73,8 @@ class HXDatePickerViewController: UIViewController {
 
 extension HXDatePickerViewController: HXStoryBoardProtocol {
 
-    static func instance() -> UIViewController {
-        return HXStoryBoardManager.viewController(withClass: HXDatePickerViewController.self)
+    static func instance() -> HXDatePickerViewController {
+        return HXStoryBoardManager.viewController(withClass: HXDatePickerViewController.self) as! HXDatePickerViewController
     }
 }
 
