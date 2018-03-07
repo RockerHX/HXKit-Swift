@@ -14,9 +14,9 @@ import UIKit
 
 extension CGRect {
 
-    var x: Double {
+    var x: CGFloat {
         get {
-            return Double(origin.x)
+            return CGFloat(origin.x)
         }
 
         set {
@@ -24,9 +24,9 @@ extension CGRect {
         }
     }
 
-    var y: Double {
+    var y: CGFloat {
         get {
-            return Double(origin.y)
+            return CGFloat(origin.y)
         }
 
         set {
@@ -34,9 +34,9 @@ extension CGRect {
         }
     }
 
-    var width: Double {
+    var width: CGFloat {
         get {
-            return Double(size.width)
+            return CGFloat(size.width)
         }
 
         set {
@@ -44,9 +44,9 @@ extension CGRect {
         }
     }
 
-    var height: Double {
+    var height: CGFloat {
         get {
-            return Double(size.height)
+            return CGFloat(size.height)
         }
 
         set {
