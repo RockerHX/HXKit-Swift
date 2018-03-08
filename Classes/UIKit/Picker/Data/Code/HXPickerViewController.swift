@@ -94,10 +94,19 @@ class HXPickerViewController: UIViewController {
 }
 
 
-extension HXPickerViewController: HXStoryBoardProtocol {
+//extension HXPickerViewController: HXStoryBoardProtocol {
+//
+//    static func instance() -> UIViewController {
+//        return HXStoryBoardManager.viewController(withClass: HXPickerViewController.self)
+//    }
+//}
 
-    static func instance() -> UIViewController {
-        return HXStoryBoardManager.viewController(withClass: HXPickerViewController.self)
+extension HXPickerViewController: BoardInstance {
+
+    enum Picker: String, BoardType { case `default` }
+
+    static func instance() -> HXPickerViewController {
+        return EasyBoard<Picker>.viewController(withClass: HXPickerViewController.self, storyBoard: .default) as! HXPickerViewController
     }
 }
 

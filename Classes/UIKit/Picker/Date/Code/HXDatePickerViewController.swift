@@ -71,10 +71,12 @@ class HXDatePickerViewController: UIViewController {
 }
 
 
-extension HXDatePickerViewController: HXStoryBoardProtocol {
+extension HXDatePickerViewController: BoardInstance {
+
+    enum DatePicker: String, BoardType { case `default` }
 
     static func instance() -> HXDatePickerViewController {
-        return HXStoryBoardManager.viewController(withClass: HXDatePickerViewController.self) as! HXDatePickerViewController
+        return EasyBoard<DatePicker>.viewController(withClass: HXDatePickerViewController.self, storyBoard: .default) as! HXDatePickerViewController
     }
 }
 
