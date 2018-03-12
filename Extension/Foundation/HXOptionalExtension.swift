@@ -10,60 +10,59 @@
 import Foundation
 
 
-extension Optional where Wrapped == Int {
+extension Optional where Wrapped == IntegerLiteralType {
 
     var string: String? {
-        if let value = self?.hashValue {
+        switch self {
+        case .some(let value):
             return String(value)
+        default:
+            return nil
         }
-        return nil
     }
 }
 
 
-extension Optional where Wrapped == Double {
+extension Optional where Wrapped == FloatLiteralType {
 
     var string: String? {
-        if let value = self?.hashValue {
+        switch self {
+        case .some(let value):
             return String(value)
+        default:
+            return nil
         }
-        return nil
     }
 }
 
 
-extension Optional where Wrapped == Float {
-
-    var string: String? {
-        if let value = self?.hashValue {
-            return String(value)
-        }
-        return nil
-    }
-}
-
-
-extension Optional where Wrapped == String {
+extension Optional where Wrapped == StringLiteralType {
 
     var int: Int? {
-        if let value = self?.hashValue {
+        switch self {
+        case .some(let value):
             return Int(value)
+        default:
+            return nil
         }
-        return nil
     }
 
     var double: Double? {
-        if let value = self?.hashValue {
+        switch self {
+        case .some(let value):
             return Double(value)
+        default:
+            return nil
         }
-        return nil
     }
 
     var float: Float? {
-        if let value = self?.hashValue {
+        switch self {
+        case .some(let value):
             return Float(value)
+        default:
+            return nil
         }
-        return nil
     }
 }
 
