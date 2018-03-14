@@ -175,6 +175,128 @@ extension Optional where Wrapped == IntegerLiteralType {
     }
 
 }
+
+
+extension Optional where Wrapped == IntegerLiteralType {
+
+    static func == (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Bool {
+        return left == right
+    }
+
+    static func == (left: Optional<Wrapped>, right: Wrapped) -> Bool {
+        if let value = left {
+            return value == right
+        }
+        return false
+    }
+
+    static func == (left: Wrapped, right: Optional<Wrapped>) -> Bool {
+        if let value = right {
+            return left == value
+        }
+        return false
+    }
+
+    static func != (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Bool {
+        return left != right
+    }
+
+    static func != (left: Optional<Wrapped>, right: Wrapped) -> Bool {
+        if let value = left {
+            return value != right
+        }
+        return true
+    }
+
+    static func != (left: Wrapped, right: Optional<Wrapped>) -> Bool {
+        if let value = right {
+            return left != value
+        }
+        return true
+    }
+
+}
+
+
+extension Optional where Wrapped == IntegerLiteralType {
+
+    static func > (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Bool {
+        return left > right
+    }
+
+    static func > (left: Optional<Wrapped>, right: Wrapped) -> Bool {
+        if let value = left {
+            return value > right
+        }
+        return false
+    }
+
+    static func > (left: Wrapped, right: Optional<Wrapped>) -> Bool {
+        if let value = right {
+            return left > value
+        }
+        return true
+    }
+
+    static func >= (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Bool {
+        return left >= right
+    }
+
+    static func >= (left: Optional<Wrapped>, right: Wrapped) -> Bool {
+        if let value = left {
+            return value >= right
+        }
+        return false
+    }
+
+    static func >= (left: Wrapped, right: Optional<Wrapped>) -> Bool {
+        if let value = right {
+            return left >= value
+        }
+        return false
+    }
+
+}
+
+
+extension Optional where Wrapped == IntegerLiteralType {
+
+    static func < (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Bool {
+        return left < right
+    }
+
+    static func < (left: Optional<Wrapped>, right: Wrapped) -> Bool {
+        if let value = left {
+            return value < right
+        }
+        return true
+    }
+
+    static func < (left: Wrapped, right: Optional<Wrapped>) -> Bool {
+        if let value = right {
+            return left < value
+        }
+        return false
+    }
+
+    static func <= (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Bool {
+        return left <= right
+    }
+
+    static func <= (left: Optional<Wrapped>, right: Wrapped) -> Bool {
+        if let value = left {
+            return value < right
+        }
+        return false
+    }
+
+    static func <= (left: Wrapped, right: Optional<Wrapped>) -> Bool {
+        if let value = right {
+            return left <= value
+        }
+        return false
+    }
+
 }
 
 
