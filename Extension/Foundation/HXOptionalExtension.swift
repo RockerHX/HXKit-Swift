@@ -150,6 +150,31 @@ extension Optional where Wrapped == IntegerLiteralType {
     }
 
 }
+
+
+extension Optional where Wrapped == IntegerLiteralType {
+
+    static func += (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Wrapped {
+        return left + right
+    }
+
+    static func -= (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Wrapped {
+        return left - right
+    }
+
+    static func *= (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Wrapped {
+        return left * right
+    }
+
+    static func /= (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Optional<Wrapped> {
+        return left / right
+    }
+
+    static func %= (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Optional<Wrapped> {
+        return left % right
+    }
+
+}
 }
 
 
