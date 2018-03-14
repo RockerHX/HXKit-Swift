@@ -23,6 +23,133 @@ extension Optional where Wrapped == IntegerLiteralType {
     }
 
 }
+
+
+extension Optional where Wrapped == IntegerLiteralType {
+
+    static func + (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Wrapped {
+        return left + right
+    }
+
+    static func + (left: Optional<Wrapped>, right: Wrapped) -> Wrapped {
+        if let value = left {
+            return value + right
+        }
+        return right
+    }
+
+    static func + (left: Wrapped, right: Optional<Wrapped>) -> Wrapped {
+        if let value = right {
+            return left + value
+        }
+        return left
+    }
+
+}
+
+
+extension Optional where Wrapped == IntegerLiteralType {
+
+    static func - (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Wrapped {
+        return left - right
+    }
+
+    static func - (left: Optional<Wrapped>, right: Wrapped) -> Wrapped {
+        if let value = left {
+            return value - right
+        }
+        return -right
+    }
+
+    static func - (left: Wrapped, right: Optional<Wrapped>) -> Wrapped {
+        if let value = right {
+            return left - value
+        }
+        return left
+    }
+
+}
+
+
+extension Optional where Wrapped == IntegerLiteralType {
+
+    static func * (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Wrapped {
+        return left * right
+    }
+
+    static func * (left: Optional<Wrapped>, right: Wrapped) -> Wrapped {
+        if let value = left {
+            return value * right
+        }
+        return 0
+    }
+
+    static func * (left: Wrapped, right: Optional<Wrapped>) -> Wrapped {
+        if let value = right {
+            return left * value
+        }
+        return 0
+    }
+
+}
+
+
+extension Optional where Wrapped == IntegerLiteralType {
+
+    static func / (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Optional<Wrapped> {
+        return left / right
+    }
+
+    static func / (left: Optional<Wrapped>, right: Wrapped) -> Optional<Wrapped> {
+        if 0 == right {
+            return nil
+        }
+        if let value = left {
+            return Optional(value / right)
+        }
+        return nil
+    }
+
+    static func / (left: Wrapped, right: Optional<Wrapped>) -> Optional<Wrapped> {
+        if let value = right {
+            if 0 == value {
+                return nil
+            }
+            return Optional(left / value)
+        }
+        return nil
+    }
+
+}
+
+
+extension Optional where Wrapped == IntegerLiteralType {
+
+    static func % (left: Optional<Wrapped>, right: Optional<Wrapped>) -> Optional<Wrapped> {
+        return left % right
+    }
+
+    static func % (left: Optional<Wrapped>, right: Wrapped) -> Optional<Wrapped> {
+        if 0 == right {
+            return nil
+        }
+        if let value = left {
+            return Optional(value % right)
+        }
+        return nil
+    }
+
+    static func % (left: Wrapped, right: Optional<Wrapped>) -> Optional<Wrapped> {
+        if let value = right {
+            if 0 == value {
+                return nil
+            }
+            return Optional(left % value)
+        }
+        return nil
+    }
+
+}
 }
 
 
