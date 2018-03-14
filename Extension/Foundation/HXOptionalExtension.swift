@@ -10,6 +10,7 @@
 import Foundation
 
 
+// MARK: - Integer Literal Type -
 extension Optional where Wrapped == IntegerLiteralType {
 
     var string: String? {
@@ -20,9 +21,12 @@ extension Optional where Wrapped == IntegerLiteralType {
             return nil
         }
     }
+
+}
 }
 
 
+// MARK: - Float Literal Type -
 extension Optional where Wrapped == FloatLiteralType {
 
     var string: String? {
@@ -33,9 +37,11 @@ extension Optional where Wrapped == FloatLiteralType {
             return nil
         }
     }
+
 }
 
 
+// MARK: - String Literal Type -
 extension Optional where Wrapped == StringLiteralType {
 
     var int: Int? {
@@ -64,6 +70,7 @@ extension Optional where Wrapped == StringLiteralType {
             return nil
         }
     }
+
 }
 
 
