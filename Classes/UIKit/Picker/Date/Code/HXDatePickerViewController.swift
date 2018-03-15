@@ -76,7 +76,7 @@ extension HXDatePickerViewController: BoardInstance {
     enum DatePicker: String, BoardType { case `default` }
 
     static func instance() -> HXDatePickerViewController {
-        return EasyBoard<DatePicker>.viewController(withClass: HXDatePickerViewController.self, storyBoard: .default) as! HXDatePickerViewController
+        return EasyBoard<DatePicker, HXDatePickerViewController>.viewController(storyBoard: .default)
     }
 }
 

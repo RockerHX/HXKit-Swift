@@ -106,7 +106,7 @@ extension HXPickerViewController: BoardInstance {
     enum Picker: String, BoardType { case `default` }
 
     static func instance() -> HXPickerViewController {
-        return EasyBoard<Picker>.viewController(withClass: HXPickerViewController.self, storyBoard: .default) as! HXPickerViewController
+        return EasyBoard<Picker, HXPickerViewController>.viewController(storyBoard: .default)
     }
 }
 
