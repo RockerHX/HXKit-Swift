@@ -14,7 +14,7 @@ protocol HXSegue: RawRepresentable {
     associatedtype Element where Element: UIViewController
 
     var identifier: String { get }
-    func performSegue(onController controller: Element)
+    func performSegue(onController controller: Element, sender: Any?)
     
 }
 
@@ -26,8 +26,8 @@ extension HXSegue {
         }
     }
 
-    func performSegue(onController controller: Element) {
-        controller.performSegue(withIdentifier: self.identifier, sender: nil)
+    func performSegue(onController controller: Element, sender: Any? = nil) {
+        controller.performSegue(withIdentifier: self.identifier, sender: sender)
     }
 
 }
