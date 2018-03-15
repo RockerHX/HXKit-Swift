@@ -82,24 +82,12 @@ class HXPickerViewController: UIViewController {
         configure()
     }
 
-    // MARK: - Navigation -
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    }
-
     // MARK: - Event Methods -
     // MARK: - Public Methods -
     // MARK: - Private Methods -
     private func configure() {
     }
 }
-
-
-//extension HXPickerViewController: HXStoryBoardProtocol {
-//
-//    static func instance() -> UIViewController {
-//        return HXStoryBoardManager.viewController(withClass: HXPickerViewController.self)
-//    }
-//}
 
 extension HXPickerViewController: BoardInstance {
 

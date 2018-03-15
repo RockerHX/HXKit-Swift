@@ -46,10 +46,6 @@ class HXDatePickerViewController: UIViewController {
         configure()
     }
 
-    // MARK: - Navigation -
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    }
-
     // MARK: - Event Methods -
     @IBAction func dateChanged(sender: UIDatePicker) {
         delegate?.datePickerView(datePicker: self, selectedDate: sender.date)
