@@ -6,7 +6,8 @@
 //  Copyright © 2018年 RockerHX. All rights reserved.
 //
 
-import Foundation
+
+import UIKit
 
 
 protocol HXSegue: RawRepresentable {
