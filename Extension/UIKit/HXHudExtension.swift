@@ -12,24 +12,41 @@ import MBProgressHUD
 
 extension UIViewController {
 
-    func showHud() {
-        showHud(toView: view)
+    public func showHud() {
+        showHud(to: view)
     }
 
-    func hiddenHud() {
+    public func showHud(with message: String) {
+        showHud(with: message, to: view)
+    }
+
+    public func hiddenHud() {
         hiddenHud(toView: view)
     }
 
-    func showHud(toView: UIView) {
+    public func showHud(to view: UIView) {
         UIActivityIndicatorView.appearance(whenContainedInInstancesOf: [MBProgressHUD.self]).color = UIColor.white
-        let hud = MBProgressHUD.showAdded(to: toView, animated: true)
+        let hud = MBProgressHUD.showAdded(to: view, animated: true)
         hud.backgroundView.color = UIColor(white: 0.0, alpha: 0.1)
         hud.backgroundView.style = .solidColor
         hud.bezelView.color = UIColor(white: 0.0, alpha: 0.8)
         hud.bezelView.style = .solidColor
     }
 
-    func hiddenHud(toView: UIView) {
+    public func showHud(with message: String, to view: UIView) {
+        UIActivityIndicatorView.appearance(whenContainedInInstancesOf: [MBProgressHUD.self]).color = UIColor.white
+        let hud = MBProgressHUD.showAdded(to: view, animated: true)
+        hud.mode = .text
+        hud.label.text = message
+        hud.offset = CGPoint(x: 0, y: MBProgressMaxOffset)
+        hud.backgroundView.color = UIColor(white: 0.0, alpha: 0.1)
+        hud.backgroundView.style = .solidColor
+        hud.bezelView.color = UIColor(white: 0.0, alpha: 0.8)
+        hud.bezelView.style = .solidColor
+        hud.hide(animated: true, afterDelay: 2)
+    }
+
+    public func hiddenHud(toView: UIView) {
         MBProgressHUD.hide(for: toView, animated: true)
     }
 }
