@@ -36,11 +36,16 @@ import UIKit
         addSubview(view)
     }
 
-    func loadViewFromNib() -> UIView {
+    func loadViewFromNib() -> UIView? {
+        var view: UIView?
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
-        let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
-
+        let objects = nib.instantiate(withOwner: self, options: nil)
+        objects.forEach { (object) in
+            if let objectView = object as? UIView {
+                view = objectView
+            }
+        }
         return view
     }
 }
