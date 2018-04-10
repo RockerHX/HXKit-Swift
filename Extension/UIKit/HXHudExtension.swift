@@ -16,8 +16,8 @@ extension UIViewController {
         showHud(to: view)
     }
 
-    public func showHud(with message: String) {
-        showHud(with: message, to: nil)
+    public func showHud(with message: String, afterDelay: TimeInterval = 1) {
+        showHud(with: message, to: nil, afterDelay: afterDelay)
     }
 
     public func hiddenHud() {
@@ -33,7 +33,7 @@ extension UIViewController {
         hud.bezelView.style = .solidColor
     }
 
-    public func showHud(with message: String, to view: UIView?) {
+    public func showHud(with message: String, to view: UIView?, afterDelay: TimeInterval = 2) {
         let container = view ?? (UIApplication.shared.delegate?.window!)!
         UIActivityIndicatorView.appearance(whenContainedInInstancesOf: [MBProgressHUD.self]).color = UIColor.white
         let hud = MBProgressHUD.showAdded(to: container, animated: true)
@@ -45,7 +45,7 @@ extension UIViewController {
         hud.backgroundView.style = .solidColor
         hud.bezelView.color = UIColor(white: 0.0, alpha: 0.8)
         hud.bezelView.style = .solidColor
-        hud.hide(animated: true, afterDelay: 2)
+        hud.hide(animated: true, afterDelay: afterDelay)
     }
 
     public func hiddenHud(toView: UIView) {
