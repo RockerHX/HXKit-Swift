@@ -29,7 +29,6 @@ extension UIView {
         }
         set {
             layer.cornerRadius = newValue;
-            layer.masksToBounds = cornerRadius > 0;
         }
     }
 
