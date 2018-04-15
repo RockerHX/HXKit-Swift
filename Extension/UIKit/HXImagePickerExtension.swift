@@ -31,7 +31,7 @@ private extension UIImagePickerController {
  <key>NSCameraUsageDescription</key>
  <string>我们需要访问您的相机</string>
  */
-extension UIViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension UIViewController {
 
     public func showImagePickerActionSheet(completionHandler: @escaping ((UIImagePickerController, UIImage?) -> ())) {
         let cameraAction = UIAlertAction(title: "相机", style: .default, handler: { [weak self] (action) in
@@ -71,6 +71,11 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
         }
     }
 
+}
+
+
+extension UIViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         var infoKey: String = ""
         if picker.isEditing {
@@ -87,4 +92,6 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
+
 }
+

@@ -35,4 +35,6 @@ final public class HXClosureDecorator<T>: NSObject {
             closure(param)
         }
     }
+
 }
+
