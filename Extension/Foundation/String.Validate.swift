@@ -176,7 +176,7 @@ extension String {
 extension String {
 
     public func isEmail() -> Validate.Result {
-        let pattern = "^(([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5}){1,25})$"
+        let pattern = "^(([\\w\\-\\.]+)@([\\w\\-\\.]+)\\.([a-zA-Z]{2,5}){1,25})$"
         return validate(with: pattern, tip: .email)
     }
 }
