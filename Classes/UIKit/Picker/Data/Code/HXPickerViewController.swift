@@ -46,7 +46,7 @@ struct HXPickerModel {
 
 protocol HXPickerViewControllerDelegate {
 
-    func pickerView(pickerViewController: HXPickerViewController, didSelectRow row: Int, inComponent component: Int)
+    func pickerView(controller: HXPickerViewController, didSelectRow row: Int, inComponent component: Int)
 }
 
 
@@ -139,7 +139,7 @@ extension HXPickerViewController: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selected = true
-        delegate?.pickerView(pickerViewController: self, didSelectRow: row, inComponent: component)
+        delegate?.pickerView(controller: self, didSelectRow: row, inComponent: component)
     }
 }
 
@@ -156,7 +156,7 @@ extension HXPickerViewController: UIViewControllerTransitioningDelegate {
 
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if !selected {
-            delegate?.pickerView(pickerViewController: self, didSelectRow: 0, inComponent: 0)
+            delegate?.pickerView(controller: self, didSelectRow: 0, inComponent: 0)
         }
         return presentAnimation(forPresented: dismissed)
     }

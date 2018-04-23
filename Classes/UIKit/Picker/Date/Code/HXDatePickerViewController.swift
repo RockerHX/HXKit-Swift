@@ -15,7 +15,7 @@ import UIKit
 
 protocol HXDatePickerViewControllerDelegate {
 
-    func datePickerView(datePicker: HXDatePickerViewController, selectedDate: Date)
+    func datePickerView(controller: HXDatePickerViewController, selected date: Date)
 }
 
 
@@ -48,13 +48,13 @@ class HXDatePickerViewController: UIViewController {
 
     // MARK: - Event Methods -
     @IBAction func dateChanged(sender: UIDatePicker) {
-        delegate?.datePickerView(datePicker: self, selectedDate: sender.date)
+        delegate?.datePickerView(controller: self, selected: sender.date)
     }
 
     // MARK: - Public Methods -
     // MARK: - Private Methods -
     private func configure() {
-        delegate?.datePickerView(datePicker: self, selectedDate: datePicker.date)
+        delegate?.datePickerView(controller: self, selected: datePicker.date)
 
         if let mode = datePickerMode {
             datePicker.datePickerMode = mode
