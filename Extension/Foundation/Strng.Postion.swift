@@ -30,8 +30,6 @@ extension String {
         let left = self[startIndex..<postionIndex]
         postionIndex = String.Index(encodedOffset: (postion + 1))
         let right = self[postionIndex...]
-        print(left)
-        print(right)
         return [String(left), String(right)]
     }
 
