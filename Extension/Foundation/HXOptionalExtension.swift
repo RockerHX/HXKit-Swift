@@ -154,24 +154,56 @@ extension Optional where Wrapped == IntegerLiteralType {
 
 extension Optional where Wrapped == IntegerLiteralType {
 
-    static func += (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Wrapped {
-        return lhs + rhs
+    static func += (lhs: inout Optional<Wrapped>, rhs: Optional<Wrapped>) {
+        lhs = lhs + rhs
     }
 
-    static func -= (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Wrapped {
-        return lhs - rhs
+    static func += (lhs: inout Optional<Wrapped>, rhs: Wrapped) {
+        lhs = lhs + rhs
     }
 
-    static func *= (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Wrapped {
-        return lhs * rhs
+    static func += (lhs: inout Wrapped, rhs: Optional<Wrapped>) {
+        lhs = lhs + rhs
     }
 
-    static func /= (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Optional<Wrapped> {
-        return lhs / rhs
+    static func -= (lhs: inout Optional<Wrapped>, rhs: Optional<Wrapped>) {
+        lhs = lhs - rhs
     }
 
-    static func %= (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Optional<Wrapped> {
-        return lhs % rhs
+    static func -= (lhs: inout Optional<Wrapped>, rhs: Wrapped) {
+        lhs = lhs - rhs
+    }
+
+    static func -= (lhs: inout Wrapped, rhs: Optional<Wrapped>) {
+        lhs = lhs - rhs
+    }
+
+    static func *= (lhs: inout Optional<Wrapped>, rhs: Optional<Wrapped>) {
+        lhs = lhs * rhs
+    }
+
+    static func *= (lhs: inout Optional<Wrapped>, rhs: Wrapped) {
+        lhs = lhs * rhs
+    }
+
+    static func *= (lhs: inout Wrapped, rhs: Optional<Wrapped>) {
+        lhs = lhs * rhs
+    }
+
+    static func /= (lhs: inout Optional<Wrapped>, rhs: Optional<Wrapped>) {
+        lhs = lhs / rhs
+    }
+
+    static func /= (lhs: inout Optional<Wrapped>, rhs: Wrapped) {
+        lhs = lhs / rhs
+    }
+
+    static func %= (lhs: inout Optional<Wrapped>, rhs: Optional<Wrapped>) {
+        lhs = lhs % rhs
+    }
+
+    static func %= (lhs: inout Optional<Wrapped>, rhs: Wrapped) {
+        lhs = lhs % rhs
     }
 
 }
