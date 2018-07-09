@@ -12,6 +12,24 @@
 import UIKit
 
 
+// MARK: - Instance Methods -
+extension UIColor {
+
+    public func toImage(with width: CGFloat = 1, height: CGFloat = 1) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: width, height: height)
+        UIGraphicsBeginImageContext(rect.size)
+        guard let context = UIGraphicsGetCurrentContext() else { fatalError("Color to Image Context Initialize Error!") }
+        context.setFillColor(cgColor)
+        context.fill(rect)
+        guard let image = UIGraphicsGetImageFromCurrentImageContext() else { fatalError("Color to Image Context Initialize Error!") }
+        UIGraphicsEndImageContext()
+        return image
+    }
+
+}
+
+
+// MARK: - Static Methods -
 extension UIColor {
 
     static func color(withRGBHex hex: String) -> UIColor {
@@ -41,4 +59,6 @@ extension UIColor {
 
         return UIColor(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: CGFloat(1))
     }
+
 }
+
