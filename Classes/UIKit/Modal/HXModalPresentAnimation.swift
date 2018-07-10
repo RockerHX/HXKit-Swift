@@ -37,7 +37,7 @@ class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     private var presented: UIViewController?
 
     // MARK: - Init Methods -
-    public init(withDirection direction: HXMoalDirection = .bottom, duration: TimeInterval = HXModalDefaultDuration, hasMask mask: Bool = true, ratio: Double = 1.0, displayHeight: CGFloat = 0) {
+    public init(with direction: HXMoalDirection = .bottom, duration: TimeInterval = HXModalDefaultDuration, hasMask mask: Bool = true, ratio: Double = 1.0, displayHeight: CGFloat = 0) {
         self.direction = direction
         self.duration = duration
         self.hasMask = mask
@@ -80,11 +80,11 @@ class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
                     }
                     
                     containerView.addSubview(toView)
-                    toView.startCenter(byModalDirection: direction)
+                    toView.startCenter(by: direction)
 
-                    UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseInOut, animations: {
+                    UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseOut, animations: {
                         let ratio = (self.displayHeight > 0) ? Double(self.displayHeight / containerView.frame.height) : self.ratio
-                        toView.endCenter(byModalDirection: self.direction, ratio: ratio)
+                        toView.endCenter(by: self.direction, ratio: ratio)
                     }, completion: { (finished) in
                         let isCancelled = transitionContext.transitionWasCancelled
                         transitionContext.completeTransition(!isCancelled)
@@ -92,14 +92,14 @@ class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
                 }
 
                 if fromViewController.isBeingDismissed {
-                    let dissmisAnimationDuration = duration * 0.5
+                    let dissmisAnimationDuration = duration * 0.6
                     if hasMask {
                         UIView.animate(withDuration: dissmisAnimationDuration, delay: 0.0, options: .curveEaseInOut, animations: {
                             self.backgroundView?.alpha = 0.0
                         }, completion: nil)
                     }
-                    UIView.animate(withDuration: dissmisAnimationDuration, delay: 0.0, options: .curveEaseInOut, animations: {
-                        fromView.startCenter(byModalDirection: self.direction)
+                    UIView.animate(withDuration: dissmisAnimationDuration, delay: 0.0, options: .curveLinear, animations: {
+                        fromView.startCenter(by: self.direction)
                     }, completion: { (finished) in
                         let isCancelled = transitionContext.transitionWasCancelled
                         transitionContext.completeTransition(!isCancelled)
@@ -113,7 +113,7 @@ class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
 extension UIView {
 
-    fileprivate func startCenter(byModalDirection direction: HXMoalDirection) {
+    fileprivate func startCenter(by direction: HXMoalDirection) {
 
         switch direction {
         case .top:
@@ -127,7 +127,7 @@ extension UIView {
         }
     }
 
-    fileprivate func endCenter(byModalDirection direction: HXMoalDirection, ratio: Double) {
+    fileprivate func endCenter(by direction: HXMoalDirection, ratio: Double) {
 
         switch direction {
         case .top:
