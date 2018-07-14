@@ -12,24 +12,6 @@
 import UIKit
 
 
-/* Solute container controller's viewControllers con't call:
-   override var prefersStatusBarHidden: Bool
-   &
-   override var preferredStatusBarStyle: UIStatusBarStyle
-*/
-extension UINavigationController {
-
-    open override var childViewControllerForStatusBarHidden: UIViewController? {
-        return visibleViewController
-    }
-
-    open override var childViewControllerForStatusBarStyle: UIViewController? {
-        return visibleViewController
-    }
-
-}
-
-
 class HXNavigationController: UINavigationController {
 
     // MARK: - View Controller Life Cycle -
