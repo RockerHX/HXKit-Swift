@@ -47,9 +47,6 @@ class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
     }
 
     // MARK: - Private Methods -
-    @objc private func backgroundTapAction() {
-        presented?.dismiss(animated: true, completion: nil)
-    }
 
     // MARK: - UIViewControllerAnimatedTransitioning -
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -71,7 +68,6 @@ class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
                         backgroundView = UIView(frame: containerView.frame)
                         containerView.addSubview(backgroundView!)
                         backgroundView?.isUserInteractionEnabled = true
-                        backgroundView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(backgroundTapAction)))
                         backgroundView?.backgroundColor = UIColor(white: 0.1, alpha: 0.5)
                         backgroundView?.alpha = 0.0
                         UIView.animate(withDuration: duration, delay: 0.0, options: .curveEaseInOut, animations: {
