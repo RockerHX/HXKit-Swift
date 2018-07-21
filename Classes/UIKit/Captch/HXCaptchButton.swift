@@ -22,11 +22,11 @@ extension HXCaptchButton {
 }
 
 
-class HXCaptchButton: HXIBButton {
+class HXCaptchButton: UIButton {
 
     // MARK: - Public Property -
-
-    @IBInspectable var duration: Int {
+    @IBInspectable
+    var duration: Int {
         get {
             return totalDuration;
         }
@@ -41,11 +41,11 @@ class HXCaptchButton: HXIBButton {
     fileprivate var defaultTitle = "点击获取"
 
     fileprivate let timer = DispatchSource.makeTimerSource()
-    fileprivate var startClosure: ((HXCaptchButton) -> Bool)?
+    fileprivate var startClosure: ((HXCaptchButton) -> Void)?
     fileprivate var endClosure: ((HXCaptchButton) -> Void)?
 
     // MARK: - Public Methods -
-    public func fir(start: ((HXCaptchButton) -> Bool)?, end: ((HXCaptchButton) -> Void)?) {
+    public func fir(start: ((HXCaptchButton) -> Void)? = nil, end: ((HXCaptchButton) -> Void)? = nil) {
         startClosure = start
         endClosure = end
         countDown()
@@ -56,6 +56,7 @@ class HXCaptchButton: HXIBButton {
         DispatchQueue.main.sync {
             setTitle(defaultTitle, for: .normal)
             isEnabled = true
+            self.endClosure?(self)
         }
     }
 
@@ -88,20 +89,16 @@ class HXCaptchButton: HXIBButton {
     // MARK: - Private Methods -
     fileprivate func countDown() {
         if isEnabled {
-            if let start = startClosure {
-                if start(self) {
-                    isEnabled = false
-                    backgroundColor = UIColor.lightGray
+            startClosure?(self)
+            isEnabled = false
 
-                    var count = duration
-                    timer.schedule(deadline: .now(), repeating: .seconds(1), leeway: .milliseconds(40))
-                    timer.setEventHandler(handler: { [weak self] in
-                        self?.down(count: count)
-                        count -= 1
-                    })
-                    timer.resume()
-                }
-            }
+            var count = duration
+            timer.schedule(deadline: .now(), repeating: .seconds(1), leeway: .milliseconds(40))
+            timer.setEventHandler(handler: { [weak self] in
+                self?.down(count: count)
+                count -= 1
+            })
+            timer.resume()
         }
     }
 
