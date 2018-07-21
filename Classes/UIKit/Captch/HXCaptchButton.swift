@@ -10,6 +10,7 @@
 
 
 import UIKit
+import Repeat
 
 
 extension HXCaptchButton {
@@ -37,10 +38,9 @@ class HXCaptchButton: UIButton {
     public var style = HXCaptchButton.Style.message
 
     // MARK: - Private Property -
-    fileprivate var totalDuration = 60
+    fileprivate var totalDuration = 90
     fileprivate var defaultTitle = "点击获取"
-
-    fileprivate let timer = DispatchSource.makeTimerSource()
+    fileprivate var timer: Repeater?
     fileprivate var startClosure: ((HXCaptchButton) -> Void)?
     fileprivate var endClosure: ((HXCaptchButton) -> Void)?
 
@@ -52,7 +52,7 @@ class HXCaptchButton: UIButton {
     }
 
     public func stop() {
-        timer.suspend()
+        timer?.pause()
         DispatchQueue.main.async {
             self.setTitle(self.defaultTitle, for: .normal)
             self.isEnabled = true
@@ -72,7 +72,8 @@ class HXCaptchButton: UIButton {
     }
 
     deinit {
-        timer.cancel()
+        timer?.pause()
+        timer = nil
     }
 
     // MARK: - Configure Method -
@@ -93,18 +94,16 @@ class HXCaptchButton: UIButton {
             isEnabled = false
 
             var count = duration
-            timer.schedule(deadline: .now(), repeating: .seconds(1), leeway: .milliseconds(40))
-            timer.setEventHandler(handler: { [weak self] in
+            timer = Repeater.every(.seconds(1), queue: DispatchQueue.main, { [weak self] timer in
                 self?.down(count: count)
                 count -= 1
             })
-            timer.resume()
         }
     }
 
     fileprivate func down(count: Int) {
-        DispatchQueue.main.sync {
-            setTitle("\(count)s", for: .normal)
+        DispatchQueue.main.async {
+            self.setTitle("\(count)s", for: .normal)
         }
         if count == 0 {
             stop()
