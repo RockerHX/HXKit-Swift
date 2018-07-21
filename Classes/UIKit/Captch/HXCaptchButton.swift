@@ -53,9 +53,9 @@ class HXCaptchButton: UIButton {
 
     public func stop() {
         timer.suspend()
-        DispatchQueue.main.sync {
-            setTitle(defaultTitle, for: .normal)
-            isEnabled = true
+        DispatchQueue.main.async {
+            self.setTitle(self.defaultTitle, for: .normal)
+            self.isEnabled = true
             self.endClosure?(self)
         }
     }
