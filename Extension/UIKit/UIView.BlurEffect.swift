@@ -16,6 +16,9 @@ import UIKit
 extension UIView {
 
     public func toBlur(style: UIBlurEffectStyle = .dark) {
+        subviews.forEach({ (subview) in
+            subview.removeFromSuperview()
+        })
         let blurEffect = UIBlurEffect(style: style)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = bounds
