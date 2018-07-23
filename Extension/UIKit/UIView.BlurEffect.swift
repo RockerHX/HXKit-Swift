@@ -16,13 +16,13 @@ import UIKit
 extension UIView {
 
     public func toBlur(with style: UIBlurEffectStyle = .dark) {
-        subviews.forEach({ (subview) in
+        self.subviews.forEach({ (subview) in
             subview.removeFromSuperview()
         })
         let blurEffect = UIBlurEffect(style: style)
         let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.frame = bounds
-        addSubview(blurView)
+        blurView.frame = self.bounds
+        self.addSubview(blurView)
     }
 
 }
@@ -31,16 +31,15 @@ extension UIView {
 // MARK: - Instance Methods -
 extension UIImageView {
 
-    public func toBlur(with style: UIBlurEffectStyle = .dark, image: UIImage?) {
-        if let addImage = image {
-            self.image = addImage
-            let transition = CATransition()
-            transition.duration = 0.5
-            transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            transition.type = kCATransitionFade;
-            layer.add(transition, forKey: nil)
-        }
+    public func toBlur(with style: UIBlurEffectStyle = .dark, image: UIImage?, duration: Double = 0.75) {
         self.toBlur(with: style)
+        if let toImage = image , toImage != self.image {
+            UIView.transition(with: self,
+                              duration: duration,
+                              options: .transitionCrossDissolve,
+                              animations: { self.image = toImage },
+                              completion: nil)
+        }
     }
 
 }
