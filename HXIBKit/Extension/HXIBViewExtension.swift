@@ -16,25 +16,26 @@ extension UIView {
 
     @IBInspectable var masksToBounds: Bool {
         get {
-            return layer.masksToBounds;
+            return layer.masksToBounds
         }
         set {
-            layer.masksToBounds = newValue;
+            layer.masksToBounds = newValue
         }
     }
 
     @IBInspectable var cornerRadius: CGFloat {
         get {
-            return layer.cornerRadius;
+            return layer.cornerRadius
         }
         set {
-            layer.cornerRadius = newValue;
+            masksToBounds = true
+            layer.cornerRadius = newValue
         }
     }
 
     @IBInspectable var hexRGBColor: String {
         get {
-            return "0xffffff";
+            return "0xffffff"
         }
         set {
             backgroundColor = UIColor.color(withRGBHex: newValue)
@@ -43,10 +44,10 @@ extension UIView {
 
     @IBInspectable var borderWidth: CGFloat {
         get {
-            return layer.borderWidth;
+            return layer.borderWidth
         }
         set {
-            layer.borderWidth = newValue;
+            layer.borderWidth = newValue
         }
     }
 
@@ -55,13 +56,13 @@ extension UIView {
             return UIColor(cgColor: layer.borderColor!)
         }
         set {
-            layer.borderColor = newValue.cgColor;
+            layer.borderColor = newValue.cgColor
         }
     }
 
     @IBInspectable var borderHexRGBColor: String {
         get {
-            return "0xffffff";
+            return "0xffffff"
         }
         set {
             layer.borderColor = UIColor.color(withRGBHex: newValue).cgColor

@@ -16,7 +16,7 @@ extension UIButton {
 
     @IBInspectable var textHexColor: String {
         get {
-            return "0xffffff";
+            return "0xffffff"
         }
         set {
             setTitleColor(UIColor.color(withRGBHex: newValue), for: .normal)

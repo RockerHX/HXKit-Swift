@@ -16,7 +16,7 @@ extension UILabel {
 
     @IBInspectable var textHexColor: String {
         get {
-            return "0xffffff";
+            return "0xffffff"
         }
         set {
             textColor = UIColor.color(withRGBHex: newValue)
