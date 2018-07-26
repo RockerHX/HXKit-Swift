@@ -45,11 +45,13 @@ extension UIView {
             self.options = options
         }
 
+        @discardableResult
         public func animations(animations: @escaping Animations) -> Self {
             self.animations = animations
             return self
         }
 
+        @discardableResult
         public func completion(completion: @escaping Completion) -> Self {
             self.completion = completion
             return self
@@ -83,3 +85,4 @@ extension UIView {
         }
     }
 }
+
