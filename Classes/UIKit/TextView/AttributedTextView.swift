@@ -1,9 +1,8 @@
 //
 //  AttributedLabel.swift
-//  2Yum
 //
 //  Created by RockerHX on 2018/4/11.
-//Copyright © 2018年 RockerHX. All rights reserved.
+//  Copyright © 2018年 RockerHX. All rights reserved.
 //
 
 
