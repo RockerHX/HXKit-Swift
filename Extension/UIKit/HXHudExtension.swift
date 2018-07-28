@@ -17,7 +17,7 @@ extension UIViewController {
     }
 
     public func showHud(with message: String, afterDelay: TimeInterval = 1) {
-        showHud(with: message, to: nil, afterDelay: afterDelay)
+        showHud(with: message, to: view, afterDelay: afterDelay)
     }
 
     public func hiddenHud() {
