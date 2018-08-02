@@ -33,22 +33,22 @@ private extension UIImagePickerController {
  */
 extension UIViewController {
 
-    public func showImagePickerActionSheet(completionHandler: @escaping ((UIImagePickerController, UIImage?) -> ())) {
+    public func showImagePickerActionSheet(canEdit: Bool = false, completionHandler: @escaping ((UIImagePickerController, UIImage?) -> ())) {
         let cameraAction = UIAlertAction(title: "相机", style: .default, handler: { [weak self] (action) in
-            self?.presentImagePickerController(withSourceType: .camera, completionHandler: completionHandler)
+            self?.presentImagePickerController(withSourceType: .camera, allowsEditing: canEdit, completionHandler: completionHandler)
         })
         let photoLibraryAction = UIAlertAction(title: "图库", style: .default, handler: { [weak self] (action) in
-            self?.presentImagePickerController(withSourceType: .photoLibrary, completionHandler: completionHandler)
+            self?.presentImagePickerController(withSourceType: .photoLibrary, allowsEditing: canEdit, completionHandler: completionHandler)
         })
         let photosAlbumAction = UIAlertAction(title: "相片库", style: .default, handler: { [weak self] (action) in
-            self?.presentImagePickerController(withSourceType: .savedPhotosAlbum, completionHandler: completionHandler)
+            self?.presentImagePickerController(withSourceType: .savedPhotosAlbum, allowsEditing: canEdit, completionHandler: completionHandler)
         })
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler:nil)
 
         showActionSheet(withTitle: "请选择图片来源", otherActions: [cameraAction, photoLibraryAction, photosAlbumAction, cancelAction])
     }
 
-    public func presentImagePickerController(withSourceType type: UIImagePickerControllerSourceType, allowsEditing: Bool = false, completionHandler: @escaping ((UIImagePickerController, UIImage?) -> ())) {
+    public func presentImagePickerController(withSourceType type: UIImagePickerControllerSourceType, allowsEditing: Bool, completionHandler: @escaping ((UIImagePickerController, UIImage?) -> ())) {
         var message: String? = nil
         if !UIImagePickerController.isSourceTypeAvailable(type) {
             switch type {
@@ -78,7 +78,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
 
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         var infoKey: String = ""
-        if picker.isEditing {
+        if picker.allowsEditing {
             infoKey = UIImagePickerControllerEditedImage
         } else {
             infoKey = UIImagePickerControllerOriginalImage
