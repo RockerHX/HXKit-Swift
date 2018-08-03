@@ -14,7 +14,8 @@ import UIKit
 
 protocol HXDatePickerViewControllerDelegate {
 
-    func datePickerView(controller: HXDatePickerViewController, selected date: Date)
+    func datePickerView(_ controller: HXDatePickerViewController, selected date: Date)
+    func datePickerView(_ controller: HXDatePickerViewController, comfirm date: Date)
 
 }
 
@@ -61,8 +62,6 @@ class HXDatePickerViewController: UIViewController {
         // 根据预设语言动态显示时间格式以及语言
         guard let preferredLanguage = Locale.preferredLanguages.first else { return }
         datePicker?.locale = Locale(identifier: preferredLanguage)
-        guard let date = datePicker?.date else { return }
-        delegate?.datePickerView(controller: self, selected: date)
     }
 
     override func viewDidLayoutSubviews() {
@@ -83,24 +82,20 @@ class HXDatePickerViewController: UIViewController {
 // MARK: - Event Methods -
 extension HXDatePickerViewController {
 
-    fileprivate func dismiss() {
-        dismiss(animated: true) { [weak self] in
-            guard let this = self else { return }
-            guard let date = this.datePicker?.date else { return }
-            this.delegate?.datePickerView(controller: this, selected: date)
-        }
-    }
-
     @IBAction func backgroundTaped() {
-        dismiss()
+        dismiss(animated: true, completion: nil)
     }
 
     @IBAction func enterButtonTaped() {
-        dismiss()
+        dismiss(animated: true) { [weak self] in
+            guard let this = self else { return }
+            guard let date = this.datePicker?.date else { return }
+            this.delegate?.datePickerView(this, comfirm: date)
+        }
     }
 
     @IBAction func dateChanged(sender: UIDatePicker) {
-        delegate?.datePickerView(controller: self, selected: sender.date)
+        delegate?.datePickerView(self, selected: sender.date)
     }
 
 }
