@@ -12,58 +12,107 @@
 import UIKit
 
 
-
 protocol HXDatePickerViewControllerDelegate {
 
     func datePickerView(controller: HXDatePickerViewController, selected date: Date)
+
 }
 
 
 class HXDatePickerViewController: UIViewController {
 
     // MARK: - IBOutlet Property -
-    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var datePicker: UIDatePicker?
+    @IBOutlet weak var controlContainer: UIView?
+    @IBOutlet weak var titleLabel: UILabel?
+    @IBOutlet weak var enterButton: UIButton?
 
     // MARK: - Public Property -
     public var delegate: HXDatePickerViewControllerDelegate?
     public var datePickerMode: UIDatePickerMode?
-    public var tag: Any?
+    public var tinColor: UIColor?
 
     // MARK: - Private Property -
-    private let animation = HXModalPresentAnimation(duration: 0.3, displayHeight: 216)
+    private let animation = HXModalPresentAnimation(duration: 0.35)
 
     // MARK: - View Controller Life Cycle -
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
         transitioningDelegate = self
         modalPresentationStyle = .custom
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configure()
     }
 
-    // MARK: - Event Methods -
+    // MARK: - Configuration Methods -
+    private func configure() {
+        if let mode = datePickerMode {
+            datePicker?.datePickerMode = mode
+        }
+        if let color = tinColor {
+            enterButton?.tintColor = color
+        }
+        if let showTitle = title {
+            titleLabel?.text = showTitle
+        }
+        // 根据预设语言动态显示时间格式以及语言
+        guard let preferredLanguage = Locale.preferredLanguages.first else { return }
+        datePicker?.locale = Locale(identifier: preferredLanguage)
+        guard let date = datePicker?.date else { return }
+        delegate?.datePickerView(controller: self, selected: date)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        let radius = 8
+        let rect = CGRect(origin: CGPoint.zero, size: view.bounds.size)
+        let radii = CGSize(width: radius, height: radius)
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: [UIRectCorner.topLeft, UIRectCorner.topRight], cornerRadii: radii)
+        let maskLayer = CAShapeLayer()
+        maskLayer.path = path.cgPath
+        controlContainer?.layer.mask = maskLayer
+    }
+
+}
+
+
+// MARK: - Event Methods -
+extension HXDatePickerViewController {
+
+    fileprivate func dismiss() {
+        dismiss(animated: true) { [weak self] in
+            guard let this = self else { return }
+            guard let date = this.datePicker?.date else { return }
+            this.delegate?.datePickerView(controller: this, selected: date)
+        }
+    }
+
+    @IBAction func backgroundTaped() {
+        dismiss()
+    }
+
+    @IBAction func enterButtonTaped() {
+        dismiss()
+    }
+
     @IBAction func dateChanged(sender: UIDatePicker) {
         delegate?.datePickerView(controller: self, selected: sender.date)
     }
 
-    // MARK: - Public Methods -
-    // MARK: - Private Methods -
-    private func configure() {
-        delegate?.datePickerView(controller: self, selected: datePicker.date)
+}
 
-        if let mode = datePickerMode {
-            datePicker.datePickerMode = mode
-        }
 
-        // 根据预设语言动态显示时间格式以及语言
-        guard let preferredLanguage = Locale.preferredLanguages.first else { return }
-        datePicker.locale = Locale(identifier: preferredLanguage)
-    }
+// MARK: - Public Methods -
+extension HXDatePickerViewController {
+}
+
+
+// MARK: - Private Methods -
+extension HXDatePickerViewController {
 }
 
 
@@ -74,6 +123,7 @@ extension HXDatePickerViewController: BoardInstance {
     static func instance() -> HXDatePickerViewController {
         return EasyBoard<DatePicker, HXDatePickerViewController>.viewController(storyBoard: .default)
     }
+
 }
 
 
@@ -90,5 +140,6 @@ extension HXDatePickerViewController: UIViewControllerTransitioningDelegate {
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return presentAnimation(forPresented: dismissed)
     }
+
 }
 
