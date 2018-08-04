@@ -16,8 +16,9 @@ extension UIViewController {
         showHud(to: view)
     }
 
-    public func showHud(with message: String, afterDelay: TimeInterval = 1) {
-        showHud(with: message, to: view, afterDelay: afterDelay)
+    public func showHud(with message: String?, afterDelay: TimeInterval = 1) {
+        guard let tip = message else { return }
+        showHud(with: tip, to: view, afterDelay: afterDelay)
     }
 
     public func hiddenHud() {
