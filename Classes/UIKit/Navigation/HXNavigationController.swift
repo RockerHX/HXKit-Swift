@@ -31,9 +31,9 @@ class HXNavigationController: UINavigationController {
 }
 
 
-extension HXNavigationController: UIGestureRecognizerDelegate {
+extension HXNavigationController {
 
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 
