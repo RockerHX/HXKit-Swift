@@ -12,7 +12,7 @@
 import UIKit
 
 
-protocol HXDatePickerViewControllerDelegate {
+protocol HXDatePickerViewControllerDelegate: class {
 
     func datePickerView(_ controller: HXDatePickerViewController, selected date: Date)
     func datePickerView(_ controller: HXDatePickerViewController, comfirm date: Date)
@@ -29,7 +29,7 @@ class HXDatePickerViewController: UIViewController {
     @IBOutlet weak var enterButton: UIButton?
 
     // MARK: - Public Property -
-    public var delegate: HXDatePickerViewControllerDelegate?
+    public weak var delegate: HXDatePickerViewControllerDelegate?
     public var datePickerMode: UIDatePickerMode?
     public var tinColor: UIColor?
 

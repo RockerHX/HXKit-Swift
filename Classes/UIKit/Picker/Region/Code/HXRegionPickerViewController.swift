@@ -12,7 +12,7 @@
 import UIKit
 
 
-protocol HXRegionPickerViewControllerDelegate {
+protocol HXRegionPickerViewControllerDelegate: class {
 
     func pickerView(controller: HXRegionPickerViewController, selected region: (province: String, city: String?, area: String?))
     func pickerView(controller: HXRegionPickerViewController, didSelectRow row: Int, inComponent component: Int)
@@ -66,7 +66,7 @@ class HXRegionPickerViewController: UIViewController {
     @IBOutlet weak var enterButton: UIButton?
 
     // MARK: - Public Property -
-    public var delegate: HXRegionPickerViewControllerDelegate?
+    public weak var delegate: HXRegionPickerViewControllerDelegate?
     public var style = Style.areas
     public var tinColor: UIColor?
 
