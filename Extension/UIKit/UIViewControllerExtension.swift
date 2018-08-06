@@ -19,4 +19,36 @@ public extension UIViewController {
     @IBAction public func unwindToPreviousSence(_ segue: UIStoryboardSegue) {
         self.dismiss(animated: true, completion: nil)
     }
+
 }
+
+
+import SafariServices
+public extension UIViewController {
+
+    public func showSafariViewController(with source: String?) {
+        guard let showURL = source,
+            let url = URL(string: showURL)
+            else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.modalPresentationCapturesStatusBarAppearance = true
+        present(safariViewController, animated: true, completion: nil)
+    }
+
+}
+
+
+extension SFSafariViewController {
+
+    override open func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .default
+    }
+
+    override open func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+
+}
+
