@@ -35,7 +35,7 @@ enum HXDirectory {
     }
 
     func searchPath(with directory: FileManager.SearchPathDirectory) -> String? {
-        return FileManager.default.urls(for: directory, in: .userDomainMask).first?.absoluteString
+        return NSSearchPathForDirectoriesInDomains(directory, .userDomainMask, true).last
     }
 }
 
