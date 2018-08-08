@@ -46,14 +46,9 @@ class HXPathManager: NSObject {
     static let manager = HXPathManager()
 
     // MARK: - Public Methods
-    public func path(withDirectory directory: HXDirectory) -> String? {
-        return directory.path
-    }
-
-    public func path(withDirectory directory: HXDirectory, subPath: String) -> URL? {
-        guard let path = path(withDirectory: directory) else { return nil }
-        let fullPath = path + subPath
-        return URL(string: fullPath)
+    public func path(withDirectory directory: HXDirectory, subPath: String = "") -> String? {
+        guard let path = directory.path else { return nil }
+        return path + subPath
     }
 
     public func storePath(withDirectory directory: HXDirectory = .Caches, relativePath: String, fileName: String) -> String? {
