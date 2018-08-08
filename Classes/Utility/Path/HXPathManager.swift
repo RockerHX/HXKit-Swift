@@ -50,10 +50,15 @@ class HXPathManager: NSObject {
         return directory.path
     }
 
+    public func path(withDirectory directory: HXDirectory, subPath: String) -> URL? {
+        guard let path = path(withDirectory: directory) else { return nil }
+        let fullPath = path + subPath
+        return URL(string: fullPath)
+    }
+
     public func storePath(withDirectory directory: HXDirectory = .Caches, relativePath: String, fileName: String) -> String? {
         if let directoryPath = directory.path {
             let path = directoryPath + relativePath
-
             if fileExists(atPath: path, created: true) {
                 return path + "/" + fileName
             }
@@ -64,10 +69,11 @@ class HXPathManager: NSObject {
     public func remove(withDirectory directory: HXDirectory = .Caches, relativePath: String, fileName: String) {
         if let directoryPath = directory.path {
             let path = directoryPath + relativePath + "/" + fileName
-
             do {
                 try FileManager.default.removeItem(atPath: path)
-            } catch  {}
+            } catch {
+                print(error)
+            }
         }
     }
 
