@@ -24,18 +24,18 @@ enum HXDirectory {
         case .Home:
             return NSHomeDirectory()
         case .Document:
-            return self.searchPath(withDirectory: .documentDirectory)
+            return self.searchPath(with: .documentDirectory)
         case .Library:
-            return self.searchPath(withDirectory: .libraryDirectory)
+            return self.searchPath(with: .libraryDirectory)
         case .Caches:
-            return self.searchPath(withDirectory: .cachesDirectory)
+            return self.searchPath(with: .cachesDirectory)
         case .Temp:
             return NSTemporaryDirectory()
         }
     }
 
-    func searchPath(withDirectory directory: FileManager.SearchPathDirectory) -> String? {
-        return NSSearchPathForDirectoriesInDomains(directory, .userDomainMask, true).last
+    func searchPath(with directory: FileManager.SearchPathDirectory) -> String? {
+        return FileManager.default.urls(for: directory, in: .userDomainMask).first?.absoluteString
     }
 }
 
