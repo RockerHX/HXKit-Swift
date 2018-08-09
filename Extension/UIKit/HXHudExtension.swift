@@ -13,16 +13,22 @@ import MBProgressHUD
 extension UIViewController {
 
     public func showHud() {
-        showHud(to: view)
+        DispatchQueue.main.async {
+            self.showHud(to: self.view)
+        }
     }
 
     public func showHud(with message: String?, afterDelay: TimeInterval = 1) {
         guard let tip = message else { return }
-        showHud(with: tip, to: view, afterDelay: afterDelay)
+        DispatchQueue.main.async {
+            self.showHud(with: tip, to: self.view, afterDelay: afterDelay)
+        }
     }
 
     public func hiddenHud() {
-        hiddenHud(toView: view)
+        DispatchQueue.main.async {
+            self.hiddenHud(toView: self.view)
+        }
     }
 
     public func showHud(to view: UIView) {
@@ -52,4 +58,6 @@ extension UIViewController {
     public func hiddenHud(toView: UIView) {
         MBProgressHUD.hide(for: toView, animated: true)
     }
+
 }
+
