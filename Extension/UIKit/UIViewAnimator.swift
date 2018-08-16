@@ -11,6 +11,26 @@
 
 import UIKit
 
+extension UIView {
+
+    public class func transition(from fromView: UIView, to toView: UIView, duration: TimeInterval, options: UIViewAnimationOptions = [], completion: ((Bool) -> Swift.Void)? = nil) {
+        fromView.alpha = 1
+        fromView.isHidden = false
+        UIView.transition(with: fromView, duration: duration, options: options, animations: {
+            fromView.isHidden = true
+            fromView.alpha = 0
+        }, completion: nil)
+
+        toView.alpha = 0
+        toView.isHidden = true
+        UIView.transition(with: toView, duration: duration, options: options, animations: {
+            toView.isHidden = false
+            toView.alpha = 1
+        }, completion: completion)
+    }
+
+}
+
 
 extension UIView {
 
