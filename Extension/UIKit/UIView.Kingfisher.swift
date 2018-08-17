@@ -16,14 +16,15 @@ import Kingfisher
 // MARK: - Instance Methods -
 extension UIImageView {
 
-    public func showImage(with url: String, placeholder: UIImage? = nil, completionHandler: CompletionHandler? = nil) {
+    public func showImage(with url: String, placeholder: UIImage? = nil, animation: Bool = false, completionHandler: CompletionHandler? = nil) {
         guard let resource = URL(string: url) else { return }
+        let options: KingfisherOptionsInfo = animation ? [
+            .transition(ImageTransition.fade(0.5)),
+            .forceTransition,
+            .keepCurrentImageWhileLoading] : []
         kf.setImage(with: resource,
              placeholder: placeholder,
-                 options: [
-                    .transition(ImageTransition.fade(0.5)),
-                    .forceTransition,
-                    .keepCurrentImageWhileLoading],
+                 options: options,
            progressBlock: nil,
        completionHandler: completionHandler)
     }
@@ -33,15 +34,16 @@ extension UIImageView {
 
 extension UIButton {
 
-    public func showImage(with url: String, for state: UIControlState, placeholder: UIImage? = nil, completionHandler: CompletionHandler? = nil) {
+    public func showImage(with url: String, for state: UIControlState, placeholder: UIImage? = nil, animation: Bool = false , completionHandler: CompletionHandler? = nil) {
         guard let resource = URL(string: url) else { return }
+        let options: KingfisherOptionsInfo = animation ? [
+            .transition(ImageTransition.fade(0.5)),
+            .forceTransition,
+            .keepCurrentImageWhileLoading] : []
         kf.setImage(with: resource,
                      for: state,
              placeholder: placeholder,
-                 options: [
-                    .transition(ImageTransition.fade(0.5)),
-                    .forceTransition,
-                    .keepCurrentImageWhileLoading],
+                 options: options,
            progressBlock: nil,
        completionHandler: completionHandler)
     }
