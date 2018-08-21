@@ -212,7 +212,10 @@ extension Optional where Wrapped == IntegerLiteralType {
 extension Optional where Wrapped == IntegerLiteralType {
 
     static func == (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Bool {
-        return lhs == rhs
+        if let left = lhs, let right = rhs {
+            return left == right
+        }
+        return false
     }
 
     static func == (lhs: Optional<Wrapped>, rhs: Wrapped) -> Bool {
@@ -253,7 +256,10 @@ extension Optional where Wrapped == IntegerLiteralType {
 extension Optional where Wrapped == IntegerLiteralType {
 
     static func > (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Bool {
-        return lhs > rhs
+        if let left = lhs, let right = rhs {
+            return left > right
+        }
+        return false
     }
 
     static func > (lhs: Optional<Wrapped>, rhs: Wrapped) -> Bool {
@@ -294,7 +300,10 @@ extension Optional where Wrapped == IntegerLiteralType {
 extension Optional where Wrapped == IntegerLiteralType {
 
     static func < (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Bool {
-        return lhs < rhs
+        if let left = lhs, let right = rhs {
+            return left < right
+        }
+        return false
     }
 
     static func < (lhs: Optional<Wrapped>, rhs: Wrapped) -> Bool {
