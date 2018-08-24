@@ -20,7 +20,7 @@ protocol HXDatePickerViewControllerDelegate: class {
 }
 
 
-class HXDatePickerViewController: UIViewController {
+class HXDatePickerViewController: ModalViewController {
 
     // MARK: - IBOutlet Property -
     @IBOutlet weak var datePicker: UIDatePicker?
@@ -34,15 +34,8 @@ class HXDatePickerViewController: UIViewController {
     public var tinColor: UIColor?
 
     // MARK: - Private Property -
-    private let animation = HXModalPresentAnimation(duration: 0.35)
 
     // MARK: - View Controller Life Cycle -
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        transitioningDelegate = self
-        modalPresentationStyle = .custom
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -117,23 +110,6 @@ extension HXDatePickerViewController: BoardInstance {
 
     static func instance() -> HXDatePickerViewController {
         return EasyBoard<DatePicker, HXDatePickerViewController>.viewController(storyBoard: .default)
-    }
-
-}
-
-
-extension HXDatePickerViewController: UIViewControllerTransitioningDelegate {
-
-    private func presentAnimation(forPresented presented: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return animation
-    }
-
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return presentAnimation(forPresented: presented)
-    }
-
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return presentAnimation(forPresented: dismissed)
     }
 
 }

@@ -57,7 +57,7 @@ extension HXRegionPickerViewController {
 }
 
 
-class HXRegionPickerViewController: UIViewController {
+class HXRegionPickerViewController: ModalViewController {
 
     // MARK: - IBOutlet Property -
     @IBOutlet weak var pickerView: UIPickerView?
@@ -71,7 +71,6 @@ class HXRegionPickerViewController: UIViewController {
     public var tinColor: UIColor?
 
     // MARK: - Private Property -
-    private let animation = HXModalPresentAnimation(duration: 0.35)
     private var collection: HXRegion.Collection? {
         didSet {
             if nil != collection {
@@ -82,12 +81,6 @@ class HXRegionPickerViewController: UIViewController {
     private var selected = Selected.Row.Component()
 
     // MARK: - View Controller Life Cycle -
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        transitioningDelegate = self
-        modalPresentationStyle = .custom
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -235,23 +228,6 @@ extension HXRegionPickerViewController: UIPickerViewDelegate {
         }
         pickerView.reloadAllComponents()
         delegate?.pickerView(controller: self, didSelectRow: row, inComponent: component)
-    }
-
-}
-
-
-extension HXRegionPickerViewController: UIViewControllerTransitioningDelegate {
-
-    private func presentAnimation(forPresented presented: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return animation
-    }
-
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return presentAnimation(forPresented: presented)
-    }
-
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return presentAnimation(forPresented: dismissed)
     }
 
 }
