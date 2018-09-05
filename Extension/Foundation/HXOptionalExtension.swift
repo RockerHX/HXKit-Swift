@@ -326,7 +326,7 @@ extension Optional where Wrapped == IntegerLiteralType {
 
     static func <= (lhs: Optional<Wrapped>, rhs: Wrapped) -> Bool {
         if let value = lhs {
-            return value < rhs
+            return value <= rhs
         }
         return false
     }
