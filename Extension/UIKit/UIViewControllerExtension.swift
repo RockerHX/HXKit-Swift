@@ -39,7 +39,7 @@ public extension UIViewController {
         guard let showURL = source,
               let url = URL(string: showURL)
         else { return }
-        guard (url.host?.isEmpty ?? false) else { return }
+        guard !(url.host?.isEmpty ?? true) else { return }
         let safariViewController = SFSafariViewController(url: url)
         safariViewController.modalPresentationCapturesStatusBarAppearance = true
         present(safariViewController, animated: true, completion: nil)
