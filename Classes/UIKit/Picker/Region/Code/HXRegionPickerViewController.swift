@@ -155,8 +155,7 @@ extension HXRegionPickerViewController {
               let data = try? Data(contentsOf: url)
         else { return nil }
         do {
-            let list = try JSONDecoder().decode(HXRegion.Collection.self, from: data)
-            return list
+            return try data.decoded()
         } catch {
             print(error)
         }
