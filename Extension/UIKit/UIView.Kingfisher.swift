@@ -34,7 +34,7 @@ extension UIImageView {
 
 extension UIButton {
 
-    public func showImage(with url: String, for state: UIControlState, placeholder: UIImage? = nil, animation: Bool = false , completionHandler: CompletionHandler? = nil) {
+    public func showImage(with url: String, for state: UIControl.State, placeholder: UIImage? = nil, animation: Bool = false , completionHandler: CompletionHandler? = nil) {
         guard let resource = URL(string: url) else { return }
         let options: KingfisherOptionsInfo = animation ? [
             .transition(ImageTransition.fade(0.5)),

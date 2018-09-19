@@ -48,7 +48,7 @@ extension UIViewController {
         showActionSheet(withTitle: "请选择图片来源", otherActions: [cameraAction, photoLibraryAction, photosAlbumAction, cancelAction])
     }
 
-    public func presentImagePickerController(withSourceType type: UIImagePickerControllerSourceType, allowsEditing: Bool, completionHandler: @escaping ((UIImagePickerController, UIImage?) -> ())) {
+    public func presentImagePickerController(withSourceType type: UIImagePickerController.SourceType, allowsEditing: Bool, completionHandler: @escaping ((UIImagePickerController, UIImage?) -> ())) {
         var message: String? = nil
         if !UIImagePickerController.isSourceTypeAvailable(type) {
             switch type {
@@ -76,14 +76,12 @@ extension UIViewController {
 
 extension UIViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        var infoKey: String = ""
-        if picker.allowsEditing {
-            infoKey = UIImagePickerControllerEditedImage
-        } else {
-            infoKey = UIImagePickerControllerOriginalImage
-        }
+    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 
+        var infoKey: UIImagePickerController.InfoKey = .originalImage
+        if picker.allowsEditing {
+            infoKey = UIImagePickerController.InfoKey.editedImage
+        }
         let image = info[infoKey] as? UIImage
         picker.completionHandlerWrapper.invoke((picker, image))
         imagePickerControllerDidCancel(picker)

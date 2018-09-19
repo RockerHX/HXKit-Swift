@@ -13,7 +13,7 @@ import UIKit
 
 extension UIView {
 
-    public class func transition(from fromView: UIView, to toView: UIView, duration: TimeInterval, options: UIViewAnimationOptions = [], completion: ((Bool) -> Swift.Void)? = nil) {
+    public class func transition(from fromView: UIView, to toView: UIView, duration: TimeInterval, options: UIView.AnimationOptions = [], completion: ((Bool) -> Swift.Void)? = nil) {
         fromView.alpha = 1
         fromView.isHidden = false
         UIView.transition(with: fromView, duration: duration, options: options, animations: {
@@ -41,7 +41,7 @@ extension UIView {
 
         fileprivate let duration: TimeInterval
         fileprivate let delay: TimeInterval
-        fileprivate let options: UIViewAnimationOptions
+        fileprivate let options: UIView.AnimationOptions
 
         fileprivate var animations: Animations! {
             didSet {
@@ -59,7 +59,7 @@ extension UIView {
         }
         fileprivate var success: Bool?
 
-        init(duration: TimeInterval, delay: TimeInterval = 0, options: UIViewAnimationOptions = []) {
+        init(duration: TimeInterval, delay: TimeInterval = 0, options: UIView.AnimationOptions = []) {
             self.duration = duration
             self.delay = delay
             self.options = options
@@ -97,7 +97,7 @@ extension UIView {
             }
         }
 
-        init(duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat, options: UIViewAnimationOptions = []) {
+        init(duration: TimeInterval, delay: TimeInterval, usingSpringWithDamping dampingRatio: CGFloat, initialSpringVelocity velocity: CGFloat, options: UIView.AnimationOptions = []) {
 
             self.dampingRatio = dampingRatio
             self.velocity = velocity

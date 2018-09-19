@@ -45,7 +45,7 @@ extension UIViewController {
                 success.button?.isHidden = true
                 
                 var successConfig = SwiftMessages.defaultConfig
-                successConfig.presentationContext = .window(windowLevel: UIWindowLevelNormal)
+                successConfig.presentationContext = .window(windowLevel: UIWindow.Level.normal)
                 SwiftMessages.show(config: successConfig, view: success)
             case .warning:
                 let warning = MessageView.viewFromNib(layout: .cardView)
@@ -57,7 +57,7 @@ extension UIViewController {
                 warning.button?.isHidden = true
                 
                 var warningConfig = SwiftMessages.defaultConfig
-                warningConfig.presentationContext = .window(windowLevel: UIWindowLevelStatusBar)
+                warningConfig.presentationContext = .window(windowLevel: UIWindow.Level.statusBar)
                 SwiftMessages.show(config: warningConfig, view: warning)
             case .error:
                 let error = MessageView.viewFromNib(layout: .tabView)

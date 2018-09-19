@@ -15,7 +15,7 @@ import UIKit
 // MARK: - Instance Methods -
 extension UIView {
 
-    public func toBlur(with style: UIBlurEffectStyle = .dark) {
+    public func toBlur(with style: UIBlurEffect.Style = .dark) {
         self.subviews.forEach({ (subview) in
             subview.removeFromSuperview()
         })
@@ -31,7 +31,7 @@ extension UIView {
 // MARK: - Instance Methods -
 extension UIImageView {
 
-    public func toBlur(with style: UIBlurEffectStyle = .dark, image: UIImage?, duration: Double = 0.75) {
+    public func toBlur(with style: UIBlurEffect.Style = .dark, image: UIImage?, duration: Double = 0.75) {
         self.toBlur(with: style)
         if let toImage = image , toImage != self.image {
             UIView.transition(with: self,

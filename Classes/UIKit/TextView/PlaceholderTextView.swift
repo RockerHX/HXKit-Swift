@@ -69,7 +69,7 @@ class PlaceholderTextView: UITextView {
     // MARK: - Configuration Methods -
     private func configure() {
         configuePlaceholder()
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(notification:)), name: NSNotification.Name.UITextViewTextDidChange, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(notification:)), name: UITextView.textDidChangeNotification, object: self)
     }
 
     private func configuePlaceholder() {
