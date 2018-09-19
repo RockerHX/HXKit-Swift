@@ -47,18 +47,3 @@ public extension UIViewController {
 
 }
 
-
-extension SFSafariViewController {
-
-    override open func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .default
-    }
-
-    override open func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-
-}
-
