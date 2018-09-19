@@ -28,7 +28,16 @@ extension Optional where Wrapped == IntegerLiteralType {
 extension Optional where Wrapped == IntegerLiteralType {
 
     static func + (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Wrapped {
-        return lhs + rhs
+        guard let lhsValue = lhs, let rhsValue = rhs else {
+            if let value = lhs {
+                return value + rhs
+            }
+            if let value = rhs {
+                return lhs + value
+            }
+            return 0
+        }
+        return lhsValue + rhsValue
     }
 
     static func + (lhs: Optional<Wrapped>, rhs: Wrapped) -> Wrapped {
@@ -51,7 +60,16 @@ extension Optional where Wrapped == IntegerLiteralType {
 extension Optional where Wrapped == IntegerLiteralType {
 
     static func - (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Wrapped {
-        return lhs - rhs
+        guard let lhsValue = lhs, let rhsValue = rhs else {
+            if let value = lhs {
+                return value - rhs
+            }
+            if let value = rhs {
+                return lhs - value
+            }
+            return 0
+        }
+        return lhsValue - rhsValue
     }
 
     static func - (lhs: Optional<Wrapped>, rhs: Wrapped) -> Wrapped {
@@ -74,7 +92,16 @@ extension Optional where Wrapped == IntegerLiteralType {
 extension Optional where Wrapped == IntegerLiteralType {
 
     static func * (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Wrapped {
-        return lhs * rhs
+        guard let lhsValue = lhs, let rhsValue = rhs else {
+            if let value = lhs {
+                return value * rhs
+            }
+            if let value = rhs {
+                return lhs * value
+            }
+            return 0
+        }
+        return lhsValue * rhsValue
     }
 
     static func * (lhs: Optional<Wrapped>, rhs: Wrapped) -> Wrapped {
@@ -97,7 +124,16 @@ extension Optional where Wrapped == IntegerLiteralType {
 extension Optional where Wrapped == IntegerLiteralType {
 
     static func / (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Optional<Wrapped> {
-        return lhs / rhs
+        guard let lhsValue = lhs, let rhsValue = rhs else {
+            if let value = lhs {
+                return value / rhs
+            }
+            if let value = rhs {
+                return lhs / value
+            }
+            return nil
+        }
+        return lhsValue / rhsValue
     }
 
     static func / (lhs: Optional<Wrapped>, rhs: Wrapped) -> Optional<Wrapped> {
@@ -126,7 +162,16 @@ extension Optional where Wrapped == IntegerLiteralType {
 extension Optional where Wrapped == IntegerLiteralType {
 
     static func % (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Optional<Wrapped> {
-        return lhs % rhs
+        guard let lhsValue = lhs, let rhsValue = rhs else {
+            if let value = lhs {
+                return value % rhs
+            }
+            if let value = rhs {
+                return lhs % value
+            }
+            return nil
+        }
+        return lhsValue % rhsValue
     }
 
     static func % (lhs: Optional<Wrapped>, rhs: Wrapped) -> Optional<Wrapped> {
@@ -233,7 +278,16 @@ extension Optional where Wrapped == IntegerLiteralType {
     }
 
     static func != (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Bool {
-        return lhs != rhs
+        guard let lhsValue = lhs, let rhsValue = rhs else {
+            if let value = lhs {
+                return value != rhs
+            }
+            if let value = rhs {
+                return lhs != value
+            }
+            return false
+        }
+        return lhsValue != rhsValue
     }
 
     static func != (lhs: Optional<Wrapped>, rhs: Wrapped) -> Bool {
@@ -277,7 +331,16 @@ extension Optional where Wrapped == IntegerLiteralType {
     }
 
     static func >= (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Bool {
-        return lhs >= rhs
+        guard let lhsValue = lhs, let rhsValue = rhs else {
+            if let value = lhs {
+                return value >= rhs
+            }
+            if let value = rhs {
+                return lhs >= value
+            }
+            return false
+        }
+        return lhsValue >= rhsValue
     }
 
     static func >= (lhs: Optional<Wrapped>, rhs: Wrapped) -> Bool {
@@ -321,7 +384,16 @@ extension Optional where Wrapped == IntegerLiteralType {
     }
 
     static func <= (lhs: Optional<Wrapped>, rhs: Optional<Wrapped>) -> Bool {
-        return lhs <= rhs
+        guard let lhsValue = lhs, let rhsValue = rhs else {
+            if let value = lhs {
+                return value <= rhs
+            }
+            if let value = rhs {
+                return lhs <= value
+            }
+            return false
+        }
+        return lhsValue <= rhsValue
     }
 
     static func <= (lhs: Optional<Wrapped>, rhs: Wrapped) -> Bool {
