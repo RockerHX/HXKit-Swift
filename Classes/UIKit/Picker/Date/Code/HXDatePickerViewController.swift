@@ -32,6 +32,7 @@ class HXDatePickerViewController: ModalViewController {
     public weak var delegate: HXDatePickerViewControllerDelegate?
     public var datePickerMode: UIDatePicker.Mode?
     public var tinColor: UIColor?
+    public var tag: Any?
 
     // MARK: - Private Property -
 
