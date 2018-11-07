@@ -25,15 +25,15 @@ class HXNavigationController: UINavigationController {
     // MARK: - Public Methods -
     // MARK: - Private Methods -
     private func configure() {
-        interactivePopGestureRecognizer?.delegate = self
+        interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
     }
-    
+
 }
 
 
 extension HXNavigationController {
 
-    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 
