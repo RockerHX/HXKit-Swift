@@ -53,4 +53,19 @@ extension CGRect {
             self.size.height = CGFloat(newValue)
         }
     }
+
 }
+
+
+extension CGRect {
+
+    var center: CGPoint {
+        get {
+            let x = self.x + (self.width / 2)
+            let y = self.y + (self.height / 2)
+            return CGPoint(x: x, y: y)
+        }
+    }
+
+}
+
