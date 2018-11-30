@@ -38,7 +38,7 @@ extension UIView {
             return "0xffffff"
         }
         set {
-            backgroundColor = UIColor.color(withRGBHex: newValue)
+            backgroundColor = UIColor.color(with: newValue)
         }
     }
 
@@ -65,7 +65,7 @@ extension UIView {
             return "0xffffff"
         }
         set {
-            layer.borderColor = UIColor.color(withRGBHex: newValue).cgColor
+            layer.borderColor = UIColor.color(with: newValue).cgColor
         }
     }
 

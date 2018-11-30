@@ -19,7 +19,9 @@ extension UILabel {
             return "0xffffff"
         }
         set {
-            textColor = UIColor.color(withRGBHex: newValue)
+            textColor = UIColor.color(with: newValue)
         }
     }
+
 }
+

@@ -32,39 +32,24 @@ extension UIColor {
 // MARK: - Static Methods -
 extension UIColor {
 
-    static func color(withRGBHex hex: String) -> UIColor {
-        var cString = hex.trimmingCharacters(in:CharacterSet.whitespacesAndNewlines).uppercased()
-        
-        if (cString.hasPrefix("#")) {
-            let index = cString.index(cString.startIndex, offsetBy:1)
-            cString = String(cString[index...])
-        }
-
-        if (cString.count != 6) {
-            return UIColor.red
-        }
-
-        let rIndex = cString.index(cString.startIndex, offsetBy: 2)
-        let rString = String(cString[..<rIndex])
-        let otherString = String(cString[rIndex...])
-        let gIndex = otherString.index(otherString.startIndex, offsetBy: 2)
-        let gString = String(otherString[..<gIndex])
-        let bIndex = cString.index(cString.endIndex, offsetBy: -2)
-        let bString = String(cString[bIndex...])
-
-        var red:CUnsignedInt = 0, green:CUnsignedInt = 0, blue:CUnsignedInt = 0;
-        Scanner(string: rString).scanHexInt32(&red)
-        Scanner(string: gString).scanHexInt32(&green)
-        Scanner(string: bString).scanHexInt32(&blue)
-
-        return UIColor(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: CGFloat(1))
+    static func color(with hex: String) -> UIColor {
+        return color(from: Int(hex) ?? 0xffffff)
     }
 
-    static func coolorFromHex(rgbValue: UInt32) -> UIColor {
-        let red = CGFloat((rgbValue & 0xFF0000) >> 16) / 256.0
-        let green = CGFloat((rgbValue & 0xFF00) >> 8) / 256.0
-        let blue = CGFloat(rgbValue & 0xFF) / 256.0
-        return UIColor(red:red, green:green, blue:blue, alpha:1.0)
+}
+
+
+extension UIColor {
+
+    convenience init(r: Int, g: Int, b: Int) {
+        self.init(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: 1.0)
+    }
+
+    static func color(from hex: Int) -> UIColor {
+        let red = (hex >> 16 ) & 0xff
+        let green = (hex >> 8 ) & 0xff
+        let blue = hex & 0xff
+        return UIColor(r: red, g: green, b: blue)
     }
 
 }

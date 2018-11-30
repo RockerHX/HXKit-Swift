@@ -19,7 +19,7 @@ extension UIButton {
             return "0xffffff"
         }
         set {
-            setTitleColor(UIColor.color(withRGBHex: newValue), for: .normal)
+            setTitleColor(UIColor.color(with: newValue), for: .normal)
         }
     }
 }
