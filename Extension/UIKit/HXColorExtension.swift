@@ -33,7 +33,9 @@ extension UIColor {
 extension UIColor {
 
     static func color(with hex: String) -> UIColor {
-        return color(from: Int(hex) ?? 0xffffff)
+        var rgb = Int(hex.replacingOccurrences(of: "#", with: ""), radix: 16)
+        rgb = rgb ?? Int(hex.replacingOccurrences(of: "0x", with: ""), radix: 16)
+        return color(from: rgb ?? 0xffffff)
     }
 
 }
