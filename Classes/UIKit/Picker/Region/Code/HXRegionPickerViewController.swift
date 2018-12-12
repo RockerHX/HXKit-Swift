@@ -157,7 +157,7 @@ extension HXRegionPickerViewController {
         do {
             return try data.decoded()
         } catch {
-            print(error)
+            debugPrint(error)
         }
         return nil
     }

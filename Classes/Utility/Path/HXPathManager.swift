@@ -67,7 +67,7 @@ class HXPathManager: NSObject {
             do {
                 try FileManager.default.removeItem(atPath: path)
             } catch {
-                print(error)
+                debugPrint(error)
             }
         }
     }
