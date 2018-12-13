@@ -26,8 +26,8 @@ fileprivate let HXModalDefaultDuration: TimeInterval = 0.5
 class HXModalPresentAnimation: NSObject, UIViewControllerAnimatedTransitioning {
 
     // MARK: - Public Property -
-    private(set) var direction: HXMoalDirection
-    private(set) var duration: TimeInterval
+    public var direction: HXMoalDirection
+    public var duration: TimeInterval
     public var hasMask: Bool
     public var ratio: Double
     public var displayHeight: CGFloat

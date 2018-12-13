@@ -16,15 +16,9 @@ class ModalViewController: UIViewController {
 
     // MARK: - IBOutlet Property -
     // MARK: - Public Property -
-    public var duration: TimeInterval = 0.35 {
-        didSet {
-            animation = HXModalPresentAnimation(duration: duration)
-        }
-    }
+    public var animation = HXModalPresentAnimation(duration: 0.35)
 
     // MARK: - Private Property -
-    private var animation = HXModalPresentAnimation(duration: 0.35)
-
     // MARK: - View Controller Life Cycle -
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
