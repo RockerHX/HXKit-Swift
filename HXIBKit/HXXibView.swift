@@ -18,17 +18,21 @@ import UIKit
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         xibSetup()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
         xibSetup()
     }
 
-    func xibSetup() {
+}
+
+
+// MARK: - Private Methods -
+extension HXXibView {
+
+    fileprivate func xibSetup() {
         view = loadViewFromNib()
         view.frame = bounds
         view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
@@ -36,7 +40,7 @@ import UIKit
         addSubview(view)
     }
 
-    func loadViewFromNib() -> UIView? {
+    fileprivate func loadViewFromNib() -> UIView? {
         var view: UIView?
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
