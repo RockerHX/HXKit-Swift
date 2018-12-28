@@ -45,5 +45,12 @@ public extension UIViewController {
         present(safariViewController, animated: true, completion: nil)
     }
 
+    public func jump2Safari(with source: String?) {
+        guard let showURL = source,
+              let url = URL(string: showURL)
+        else { return }
+        UIApplication.shared.openURL(url)
+    }
+
 }
 
