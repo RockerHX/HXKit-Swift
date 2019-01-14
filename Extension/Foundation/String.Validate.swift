@@ -211,7 +211,7 @@ extension String {
 extension String {
 
     public func isMoney() -> Validate.Result {
-        let pattern = "^(0|[1-9][0-9]*)$"
+        let pattern = "^\\d+(\\.\\d{1,2})?$"
         return validate(with: pattern, tip: .money)
     }
 
