@@ -45,7 +45,7 @@ extension UIViewController {
         })
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler:nil)
 
-        showActionSheet(withTitle: "请选择图片来源", otherActions: [cameraAction, photoLibraryAction, photosAlbumAction, cancelAction])
+        showActionSheet(with: "请选择图片来源", otherActions: [cameraAction, photoLibraryAction, photosAlbumAction, cancelAction])
     }
 
     public func presentImagePickerController(withSourceType type: UIImagePickerController.SourceType, allowsEditing: Bool, completionHandler: @escaping ((UIImagePickerController, UIImage?) -> ())) {
