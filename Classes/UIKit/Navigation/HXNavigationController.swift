@@ -17,23 +17,20 @@ class HXNavigationController: UINavigationController {
     // MARK: - View Controller Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configure()
     }
 
     // MARK: - Event Methods -
     // MARK: - Public Methods -
     // MARK: - Private Methods -
-    private func configure() {
-        interactivePopGestureRecognizer?.delegate = self as? UIGestureRecognizerDelegate
-    }
+    private func configure() {}
 
 }
 
 
 extension HXNavigationController {
 
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 
