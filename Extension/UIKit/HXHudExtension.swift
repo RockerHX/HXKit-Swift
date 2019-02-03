@@ -10,6 +10,36 @@
 import MBProgressHUD
 
 
+extension MBProgressHUD {
+
+    public enum Offset {
+        case top
+        case center
+        case bottom
+        case position(percent: CGFloat)
+
+        var point: CGPoint {
+            var y: CGFloat = MBProgressMaxOffset
+            switch self {
+            case .top:
+                y = -100
+            case .center:
+                y = 0
+            case .bottom:
+                break
+            case .position(let percent):
+                if percent <= 1 || percent >= 0 {
+                    y = (UIScreen.main.bounds.size.height / 2) * percent
+                }
+            }
+            return CGPoint(x: 0, y: y)
+        }
+
+    }
+
+}
+
+
 extension UIViewController {
 
     public func showHud() {
@@ -18,10 +48,10 @@ extension UIViewController {
         }
     }
 
-    public func showHud(with message: String?, afterDelay: TimeInterval = 1) {
+    public func showHud(with message: String?, afterDelay: TimeInterval = 1, offset: MBProgressHUD.Offset = .bottom) {
         guard let tip = message else { return }
         DispatchQueue.main.async {
-            self.showHud(with: tip, to: self.view, afterDelay: afterDelay)
+            self.showHud(with: tip, to: self.view, afterDelay: afterDelay, offset: offset)
         }
     }
 
@@ -40,14 +70,14 @@ extension UIViewController {
         hud.bezelView.style = .solidColor
     }
 
-    public func showHud(with message: String, to view: UIView?, afterDelay: TimeInterval = 2) {
+    public func showHud(with message: String, to view: UIView?, afterDelay: TimeInterval = 2, offset: MBProgressHUD.Offset) {
         let container = view ?? (UIApplication.shared.delegate?.window!)!
         UIActivityIndicatorView.appearance(whenContainedInInstancesOf: [MBProgressHUD.self]).color = UIColor.white
         let hud = MBProgressHUD.showAdded(to: container, animated: true)
         hud.mode = .text
         hud.label.text = message
         hud.label.textColor = .white
-        hud.offset = CGPoint(x: 0, y: MBProgressMaxOffset)
+        hud.offset = offset.point
         hud.backgroundView.color = UIColor(white: 0.0, alpha: 0.1)
         hud.backgroundView.style = .solidColor
         hud.bezelView.color = UIColor(white: 0.0, alpha: 0.8)

@@ -15,13 +15,11 @@ import UIKit
 // 显示上拉选择菜单Extension
 extension UIViewController {
 
-    public func showActionSheet(withTitle title: String, message: String? = nil, otherActions: Array<UIAlertAction>) {
+    public func showActionSheet(with title: String, message: String? = nil, otherActions: [UIAlertAction]) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-
         for action in otherActions {
             controller.addAction(action)
         }
-
         present(controller, animated: true, completion: nil)
     }
 
@@ -30,13 +28,11 @@ extension UIViewController {
 
 extension UIViewController {
 
-    public func showAlert(withTitle title: String, message: String? = nil, otherActions: Array<UIAlertAction>) {
+    public func showAlert(with title: String, message: String? = nil, otherActions: [UIAlertAction]) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-
         for action in otherActions {
             controller.addAction(action)
         }
-
         present(controller, animated: true, completion: nil)
     }
     

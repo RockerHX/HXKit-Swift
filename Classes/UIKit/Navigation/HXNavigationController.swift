@@ -23,7 +23,9 @@ class HXNavigationController: UINavigationController {
     // MARK: - Event Methods -
     // MARK: - Public Methods -
     // MARK: - Private Methods -
-    private func configure() {}
+    private func configure() {
+        interactivePopGestureRecognizer?.delegate = self
+    }
 
 }
 
