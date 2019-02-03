@@ -37,7 +37,7 @@ extension Optional {
      - 参数: 如果可选值为空，将返回会默认值
      ```
      let optional: Int? = nil
-     print(optional.or(10)) // 打印 10
+     debugPrint(optional.or(10)) // 打印 10
      ```
      */
     func or(_ default: Wrapped) -> Wrapped {
@@ -51,7 +51,7 @@ extension Optional {
 
     /**
      返回可选值或 `else` 表达式返回的值
-     例如. optional.or(else: print("Arrr"))
+     例如. optional.or(else: debugPrint("Arrr"))
 
      默认闭包和默认值非常的相似，但它允许从闭包中返回默认值。
      ```
@@ -165,13 +165,13 @@ extension Optional where Wrapped == Error {
      do {
      try throwingFunction()
      } catch let error {
-     print(error)
+     debugPrint(error)
      }
      ```
 
      这是 Swift 中错误处理的基本原则之一，但它不够简单明了。使用上面的提供的函数，你可以使代码变得足够简单。
      ```
-     should { try throwingFunction) }.or(print($0))
+     should { try throwingFunction) }.or(debugPrint($0))
      ```
      */
     func or(_ else: (Error) -> Void) {
