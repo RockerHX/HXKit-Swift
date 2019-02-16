@@ -1,6 +1,6 @@
 //
 //  FastNotification.swift
-//  Delivery
+//  HXKit-Swift
 //
 //  Created by RockerHX on 2018/4/18.
 //  Copyright © 2018年 RockerHX. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  HXCollectionExtension.swift
-//  News
+//  HXKit-Swift
 //
 //  Created by RockerHX on 2018/3/12.
 //  Copyright © 2018年 RockerHX. All rights reserved.

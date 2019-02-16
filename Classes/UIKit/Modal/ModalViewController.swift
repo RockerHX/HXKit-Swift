@@ -1,6 +1,6 @@
 //
 //  ModalViewController.swift
-//  FishHead
+//  HXKit-Swift
 //
 //  Created by RockerHX on 2018/8/24.
 //  Copyright © 2018年 RockerHX. All rights reserved.
