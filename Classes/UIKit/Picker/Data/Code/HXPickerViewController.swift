@@ -41,12 +41,14 @@ struct HXPickerModel {
         self.second = second
         self.third = third
     }
+
 }
 
 
 protocol HXPickerViewControllerDelegate {
 
     func pickerView(controller: HXPickerViewController, didSelectRow row: Int, inComponent component: Int)
+
 }
 
 
@@ -71,14 +73,12 @@ class HXPickerViewController: UIViewController {
     // MARK: - View Controller Life Cycle -
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
         transitioningDelegate = self
         modalPresentationStyle = .custom
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configure()
     }
 
@@ -87,7 +87,9 @@ class HXPickerViewController: UIViewController {
     // MARK: - Private Methods -
     private func configure() {
     }
+
 }
+
 
 extension HXPickerViewController: BoardInstance {
 
@@ -96,6 +98,7 @@ extension HXPickerViewController: BoardInstance {
     static func instance() -> HXPickerViewController {
         return EasyBoard<Picker, HXPickerViewController>.viewController(storyBoard: .default)
     }
+
 }
 
 
@@ -118,6 +121,7 @@ extension HXPickerViewController: UIPickerViewDataSource {
             return model?.third?.count ?? 0
         }
     }
+
 }
 
 
@@ -141,6 +145,7 @@ extension HXPickerViewController: UIPickerViewDelegate {
         selected = true
         delegate?.pickerView(controller: self, didSelectRow: row, inComponent: component)
     }
+
 }
 
 
@@ -160,5 +165,6 @@ extension HXPickerViewController: UIViewControllerTransitioningDelegate {
         }
         return presentAnimation(forPresented: dismissed)
     }
+
 }
 
