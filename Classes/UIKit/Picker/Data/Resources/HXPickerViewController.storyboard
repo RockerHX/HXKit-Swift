@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Wwi-Oe-uma">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Wwi-Oe-uma">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--HXPickerViewController-->
         <scene sceneID="cRy-fW-NV6">
             <objects>
-                <viewController storyboardIdentifier="HXPickerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wwi-Oe-uma" userLabel="HXPickerViewController" customClass="HXPickerViewController" customModule="unWaste" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HXPickerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wwi-Oe-uma" userLabel="HXPickerViewController" customClass="HXPickerViewController" customModule="VoiceMai" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kp2-zq-aXc"/>
                         <viewControllerLayoutGuide type="bottom" id="55L-a7-MsP"/>
@@ -22,19 +22,65 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wv4-2t-GI8">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Wwi-Oe-uma" id="raZ-0Y-MzA"/>
                                     <outlet property="delegate" destination="Wwi-Oe-uma" id="as2-7q-Hl5"/>
                                 </connections>
                             </pickerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="acT-b5-Kez" userLabel="Background">
+                                <rect key="frame" x="0.0" y="20" width="375" height="382"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="HUT-0U-PAa" appends="YES" id="g56-xX-yhl"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4lB-RL-ZfA" userLabel="Control Container">
+                                <rect key="frame" x="0.0" y="402" width="375" height="49"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bk-UC-zye">
+                                        <rect key="frame" x="315" y="0.0" width="60" height="49"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="s7c-bg-9NM"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.2156862745" green="0.08235294118" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="确认"/>
+                                        <connections>
+                                            <action selector="enterButtonTaped" destination="Wwi-Oe-uma" eventType="touchUpInside" id="1A7-46-4FB"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选项" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvt-S9-4K1">
+                                        <rect key="frame" x="16" y="16" width="29" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.60392156860000001" green="0.60392156860000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="2bk-UC-zye" firstAttribute="top" secondItem="4lB-RL-ZfA" secondAttribute="top" id="8j2-Gz-lxB"/>
+                                    <constraint firstAttribute="trailing" secondItem="2bk-UC-zye" secondAttribute="trailing" id="Dkp-UG-dkz"/>
+                                    <constraint firstAttribute="bottom" secondItem="2bk-UC-zye" secondAttribute="bottom" id="JWG-S5-6mi"/>
+                                    <constraint firstAttribute="height" constant="49" id="Qti-Ip-dnr"/>
+                                    <constraint firstItem="mvt-S9-4K1" firstAttribute="leading" secondItem="4lB-RL-ZfA" secondAttribute="leading" constant="16" id="ZTg-JB-k5P"/>
+                                    <constraint firstItem="mvt-S9-4K1" firstAttribute="centerY" secondItem="4lB-RL-ZfA" secondAttribute="centerY" id="kmQ-NC-ipN"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="wv4-2t-GI8" secondAttribute="trailing" id="2E1-a5-KvW"/>
-                            <constraint firstItem="wv4-2t-GI8" firstAttribute="top" secondItem="Asz-J7-Ogf" secondAttribute="top" id="K3e-bO-Ho1"/>
+                            <constraint firstItem="4lB-RL-ZfA" firstAttribute="leading" secondItem="Asz-J7-Ogf" secondAttribute="leading" id="5Ki-tC-C4q"/>
+                            <constraint firstItem="4lB-RL-ZfA" firstAttribute="top" secondItem="acT-b5-Kez" secondAttribute="bottom" id="O16-i0-y9E"/>
+                            <constraint firstAttribute="trailing" secondItem="acT-b5-Kez" secondAttribute="trailing" id="cco-NK-u1s"/>
+                            <constraint firstItem="acT-b5-Kez" firstAttribute="leading" secondItem="Asz-J7-Ogf" secondAttribute="leading" id="fvb-kE-F0b"/>
+                            <constraint firstItem="55L-a7-MsP" firstAttribute="top" secondItem="wv4-2t-GI8" secondAttribute="bottom" id="jQ0-vx-t4O"/>
+                            <constraint firstItem="acT-b5-Kez" firstAttribute="top" secondItem="Kp2-zq-aXc" secondAttribute="bottom" id="mHb-9d-qIU"/>
                             <constraint firstItem="wv4-2t-GI8" firstAttribute="leading" secondItem="Asz-J7-Ogf" secondAttribute="leading" id="nrG-6g-bT3"/>
+                            <constraint firstAttribute="trailing" secondItem="4lB-RL-ZfA" secondAttribute="trailing" id="taK-g3-1Ow"/>
+                            <constraint firstItem="wv4-2t-GI8" firstAttribute="top" secondItem="4lB-RL-ZfA" secondAttribute="bottom" id="x50-s0-DGI"/>
                         </constraints>
                     </view>
                     <connections>
@@ -42,6 +88,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ebS-U6-Shf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="HUT-0U-PAa">
+                    <connections>
+                        <action selector="backgroundTaped" destination="Wwi-Oe-uma" id="uhd-ji-4dt"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-354.39999999999998" y="156.97151424287858"/>
         </scene>

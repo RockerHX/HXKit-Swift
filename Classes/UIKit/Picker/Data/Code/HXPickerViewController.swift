@@ -67,7 +67,7 @@ class HXPickerViewController: UIViewController {
     }
 
     // MARK: - Private Property -
-    private let animation = HXModalPresentAnimation(duration: 0.3, displayHeight: 216)
+    private let animation = HXModalPresentAnimation()
     private var selected = false
 
     // MARK: - View Controller Life Cycle -
@@ -82,15 +82,14 @@ class HXPickerViewController: UIViewController {
         configure()
     }
 
-    // MARK: - Event Methods -
-    // MARK: - Public Methods -
-    // MARK: - Private Methods -
+    // MARK: - Configuration Methods -
     private func configure() {
     }
 
 }
 
 
+// MARK: - BoardInstance Methods -
 extension HXPickerViewController: BoardInstance {
 
     enum Picker: String, BoardType { case `default` = "HXPickerViewController" }
@@ -102,7 +101,45 @@ extension HXPickerViewController: BoardInstance {
 }
 
 
-// MARK: - UIPickerViewDataSource -
+// MARK: - Event Methods -
+extension HXPickerViewController {
+
+    @IBAction func backgroundTaped() {
+        dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func enterButtonTaped() {
+//        var province = ""
+//        var city: String?, area: String?
+//        switch style {
+//        case .provinces:
+//            province = collection?.list[safe: selected.first]?.name ?? ""
+//        case .cities:
+//            province = collection?.list[safe: selected.first]?.name ?? ""
+//            city = collection?.list[safe: selected.first]?.children?[safe: selected.second]?.name ?? ""
+//        case .areas:
+//            province = collection?.list[safe: selected.first]?.name ?? ""
+//            city = collection?.list[safe: selected.first]?.children?[safe: selected.second]?.name ?? ""
+//            area = collection?.list[safe: selected.first]?.children?[safe: selected.second]?.children?[safe: selected.third]?.name
+//        }
+//        delegate?.pickerView(controller: self, selected: (province, city, area))
+        dismiss(animated: true, completion: nil)
+    }
+
+}
+
+
+// MARK: - Public Methods -
+extension HXPickerViewController {
+}
+
+
+// MARK: - Private Methods -
+extension HXPickerViewController {
+}
+
+
+// MARK: - UIPickerViewDataSource Methods -
 extension HXPickerViewController: UIPickerViewDataSource {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -125,7 +162,7 @@ extension HXPickerViewController: UIPickerViewDataSource {
 }
 
 
-// MARK: - UIPickerViewDelegate -
+// MARK: - UIPickerViewDelegate Methods -
 extension HXPickerViewController: UIPickerViewDelegate {
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -149,6 +186,7 @@ extension HXPickerViewController: UIPickerViewDelegate {
 }
 
 
+// MARK: - UIViewControllerTransitioningDelegate Methods -
 extension HXPickerViewController: UIViewControllerTransitioningDelegate {
 
     private func presentAnimation(forPresented presented: UIViewController) -> UIViewControllerAnimatedTransitioning? {
