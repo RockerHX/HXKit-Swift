@@ -3,7 +3,9 @@
 //  HXKit-Swift
 //
 //  Created by XRD.Andy on 2017/2/20.
-//  Copyright © 2017年 XRD.Andy. All rights reserved.
+//  Copyright © 2017年 RockerHX. All rights reserved.
+//
+//  GitHub: https://github.com/rockerhx
 //
 
 
