@@ -14,9 +14,9 @@ import UIKit
 
 public extension UIViewController {
 
-    @IBAction public func unwindToPreviousController(_ segue: UIStoryboardSegue) {}
+    @IBAction func unwindToPreviousController(_ segue: UIStoryboardSegue) {}
 
-    @IBAction public func unwindToPreviousSence(_ segue: UIStoryboardSegue) {
+    @IBAction func unwindToPreviousSence(_ segue: UIStoryboardSegue) {
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -25,7 +25,7 @@ public extension UIViewController {
 
 public extension UIViewController {
 
-    public func dismissKeyboard() {
+    func dismissKeyboard() {
         view.endEditing(true)
     }
 
@@ -35,7 +35,7 @@ public extension UIViewController {
 import SafariServices
 public extension UIViewController {
 
-    public func showSafariViewController(with source: String?) {
+    func showSafariViewController(with source: String?) {
         guard let showURL = source,
               let url = URL(string: showURL)
         else { return }
@@ -45,7 +45,7 @@ public extension UIViewController {
         present(safariViewController, animated: true, completion: nil)
     }
 
-    public func jump2Safari(with source: String?) {
+    func jump2Safari(with source: String?) {
         guard let showURL = source,
               let url = URL(string: showURL)
         else { return }

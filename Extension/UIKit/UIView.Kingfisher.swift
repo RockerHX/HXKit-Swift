@@ -16,7 +16,7 @@ import Kingfisher
 // MARK: - Instance Methods -
 extension UIImageView {
 
-    public func showImage(with url: String, placeholder: UIImage? = nil, animation: Bool = false, completionHandler: CompletionHandler? = nil) {
+    public func showImage(with url: String, placeholder: UIImage? = nil, animation: Bool = false, completionHandler: ((Result<RetrieveImageResult, KingfisherError>) -> Void)? = nil) {
         guard let resource = URL(string: url) else { return }
         let options: KingfisherOptionsInfo = animation ? [
             .transition(ImageTransition.fade(0.5)),
@@ -34,7 +34,7 @@ extension UIImageView {
 
 extension UIButton {
 
-    public func showImage(with url: String, for state: UIControl.State, placeholder: UIImage? = nil, animation: Bool = false , completionHandler: CompletionHandler? = nil) {
+    public func showImage(with url: String, for state: UIControl.State, placeholder: UIImage? = nil, animation: Bool = false , completionHandler: ((Result<RetrieveImageResult, KingfisherError>) -> Void)? = nil) {
         guard let resource = URL(string: url) else { return }
         let options: KingfisherOptionsInfo = animation ? [
             .transition(ImageTransition.fade(0.5)),

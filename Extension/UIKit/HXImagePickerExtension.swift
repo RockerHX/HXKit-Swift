@@ -58,6 +58,8 @@ extension UIViewController {
                 message = "你确认你的手机里有图库？？？"
             case .savedPhotosAlbum:
                 message = "你确认你的手机里有相片库？？？"
+            @unknown default:
+                fatalError()
             }
             assert(message != nil, message!)
         } else {

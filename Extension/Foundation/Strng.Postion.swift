@@ -26,9 +26,9 @@ extension String {
 
     public func truncation(of subString: String, backwards: Bool = false) -> [String] {
         let postion = position(of: subString, backwards: backwards)
-        var postionIndex = String.Index(encodedOffset: postion)
+        var postionIndex = String.Index(utf16Offset: postion, in: subString)
         let left = self[startIndex..<postionIndex]
-        postionIndex = String.Index(encodedOffset: (postion + 1))
+        postionIndex = String.Index(utf16Offset: (postion + 1), in: subString)
         let right = self[postionIndex...]
         return [String(left), String(right)]
     }
