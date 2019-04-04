@@ -45,7 +45,7 @@ struct HXPickerModel {
 }
 
 
-protocol HXPickerViewControllerDelegate {
+protocol HXPickerViewControllerDelegate: class {
 
     func pickerView(controller: HXPickerViewController, didSelectRow row: Int, inComponent component: Int)
 
@@ -58,7 +58,7 @@ class HXPickerViewController: UIViewController {
     @IBOutlet weak var pickerView: UIPickerView!
 
     // MARK: - Public Property -
-    public var delegate: HXPickerViewControllerDelegate?
+    public weak var delegate: HXPickerViewControllerDelegate?
     public var tag: Any?
     public var model: HXPickerModel? {
         didSet {
