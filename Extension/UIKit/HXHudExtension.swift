@@ -23,11 +23,11 @@ extension MBProgressHUD {
             var y: CGFloat = MBProgressMaxOffset
             switch self {
             case .top:
-                y = -100
+                y = -200
             case .center:
                 y = 0
             case .bottom:
-                break
+                y = 200
             case .position(let percent):
                 if percent <= 1 || percent >= 0 {
                     y = (UIScreen.main.bounds.size.height / 2) * percent
