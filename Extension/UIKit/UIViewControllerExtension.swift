@@ -45,6 +45,14 @@ public extension UIViewController {
         present(safariViewController, animated: true, completion: nil)
     }
 
+    func showSafariViewController(with url: URL?) {
+        guard let showURL = url else { return }
+        guard !(showURL.host?.isEmpty ?? true) else { return }
+        let safariViewController = SFSafariViewController(url: showURL)
+        safariViewController.modalPresentationCapturesStatusBarAppearance = true
+        present(safariViewController, animated: true, completion: nil)
+    }
+
     func jump2Safari(with source: String?) {
         guard let showURL = source,
               let url = URL(string: showURL)
