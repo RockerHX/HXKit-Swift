@@ -40,3 +40,23 @@ extension String {
 
 }
 
+
+extension String {
+
+    func delete(prefix: String) -> String {
+        guard self.hasPrefix(prefix) else { return self }
+        return String(self.dropFirst(prefix.count))
+    }
+
+    func delete(suffix: String) -> String {
+        guard self.contains(suffix) else { return self }
+        return String(self.dropLast(suffix.count))
+    }
+
+    func delete(prefix: String, suffix: String) -> String {
+        let tmp = self.delete(prefix: prefix)
+        return tmp.delete(suffix: suffix)
+    }
+
+}
+
