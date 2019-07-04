@@ -60,3 +60,14 @@ extension String {
 
 }
 
+
+extension String {
+
+    /// 从url中获取后缀 例：.pdf
+    var pathExtension: String? {
+        guard let url = URL(string: self) else { return nil }
+        return url.pathExtension.isEmpty ? nil : url.pathExtension
+    }
+
+}
+
