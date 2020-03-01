@@ -71,7 +71,7 @@ extension UIViewController {
         hud.bezelView.style = .solidColor
     }
 
-    public func showHud(with message: String, to view: UIView?, afterDelay: TimeInterval = 2, offset: MBProgressHUD.Offset) {
+    public func showHud(with message: String, to view: UIView?, afterDelay: TimeInterval = 2, offset: MBProgressHUD.Offset = .center) {
         let container = view ?? (UIApplication.shared.delegate?.window!)!
         UIActivityIndicatorView.appearance(whenContainedInInstancesOf: [MBProgressHUD.self]).color = UIColor.white
         let hud = MBProgressHUD.showAdded(to: container, animated: true)

@@ -55,7 +55,7 @@ extension UIViewController {
                 warning.configureTheme(.warning)
                 warning.configureDropShadow()
                 
-                let iconText = ["🤔", "😳", "🙄", "😶"].sm_random()!
+                let iconText = "🤔"
                 warning.configureContent(title: HXMessage.warning.title, body: content, iconText: iconText)
                 warning.button?.isHidden = true
                 
