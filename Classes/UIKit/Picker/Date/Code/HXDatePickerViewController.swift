@@ -12,7 +12,7 @@
 import UIKit
 
 
-protocol HXDatePickerViewControllerDelegate: class {
+protocol HXDatePickerViewControllerDelegate: AnyObject {
 
     func datePickerView(_ controller: HXDatePickerViewController, selected date: Date)
     func datePickerView(_ controller: HXDatePickerViewController, comfirm date: Date)
