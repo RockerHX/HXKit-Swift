@@ -45,7 +45,7 @@ struct HXPickerModel {
 }
 
 
-protocol HXPickerViewControllerDelegate: class {
+protocol HXPickerViewControllerDelegate: AnyObject {
 
     func pickerView(controller: HXPickerViewController, didSelectRow row: Int, inComponent component: Int)
 
