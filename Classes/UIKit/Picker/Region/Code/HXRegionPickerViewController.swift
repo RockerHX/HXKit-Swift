@@ -12,7 +12,7 @@
 import UIKit
 
 
-protocol HXRegionPickerViewControllerDelegate: class {
+protocol HXRegionPickerViewControllerDelegate: AnyObject {
 
     func pickerView(controller: HXRegionPickerViewController, selected region: (province: String, city: String?, area: String?))
     func pickerView(controller: HXRegionPickerViewController, didSelectRow row: Int, inComponent component: Int)
