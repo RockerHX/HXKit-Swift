@@ -102,17 +102,11 @@ extension UIView {
     @IBInspectable
     var shadowColor: UIColor? {
         get {
-            if let color = layer.shadowColor {
-                return UIColor(cgColor: color)
-            }
-            return nil
+            guard let color = layer.shadowColor else { return nil }
+            return UIColor(cgColor: color)
         }
         set {
-            if let color = newValue {
-                layer.shadowColor = color.cgColor
-            } else {
-                layer.shadowColor = nil
-            }
+            layer.shadowColor = newValue?.cgColor
         }
     }
 
