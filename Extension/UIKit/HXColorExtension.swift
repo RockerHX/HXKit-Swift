@@ -32,10 +32,10 @@ extension UIColor {
 // MARK: - Static Methods -
 extension UIColor {
 
-    static func color(with hex: String) -> UIColor {
+    static func color(with hex: String, alpha: Double = 1.0) -> UIColor {
         var rgb = Int(hex.replacingOccurrences(of: "#", with: ""), radix: 16)
         rgb = rgb ?? Int(hex.replacingOccurrences(of: "0x", with: ""), radix: 16)
-        return color(from: rgb ?? 0xffffff)
+        return color(from: rgb ?? 0xffffff, alpha: alpha)
     }
 
 }
@@ -43,15 +43,15 @@ extension UIColor {
 
 extension UIColor {
 
-    convenience init(r: Int, g: Int, b: Int) {
-        self.init(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: 1.0)
+    convenience init(r: Int, g: Int, b: Int, alpha: Double = 1.0) {
+        self.init(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: alpha)
     }
 
-    static func color(from hex: Int) -> UIColor {
+    static func color(from hex: Int, alpha: Double = 1.0) -> UIColor {
         let red = (hex >> 16 ) & 0xff
         let green = (hex >> 8 ) & 0xff
         let blue = hex & 0xff
-        return UIColor(r: red, g: green, b: blue)
+        return UIColor(r: red, g: green, b: blue, alpha: alpha)
     }
 
 }
