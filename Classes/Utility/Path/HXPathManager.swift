@@ -13,6 +13,7 @@ import UIKit
 
 
 enum HXDirectory {
+
     case Home
     case Document
     case Library
@@ -34,34 +35,43 @@ enum HXDirectory {
         }
     }
 
+}
+
+extension HXDirectory {
+
     func searchPath(with directory: FileManager.SearchPathDirectory) -> String? {
         return NSSearchPathForDirectoriesInDomains(directory, .userDomainMask, true).last
     }
+
 }
 
 
-class HXPathManager: NSObject {
+class HXPathManager {
 
     // MARK: - Singleton
     static let manager = HXPathManager()
 
-    // MARK: - Public Methods
-    public func path(withDirectory directory: HXDirectory, subPath: String = "") -> String? {
+}
+
+// MARK: - Public Methods
+extension HXPathManager {
+
+    public func path(with directory: HXDirectory, subPath: String = "") -> String? {
         guard let path = directory.path else { return nil }
         return path + subPath
     }
 
-    public func storePath(withDirectory directory: HXDirectory = .Caches, relativePath: String, fileName: String) -> String? {
+    public func storePath(with directory: HXDirectory = .Caches, relativePath: String, fileName: String) -> String? {
         if let directoryPath = directory.path {
             let path = directoryPath + relativePath
-            if fileExists(atPath: path, created: true) {
+            if fileExists(at: path, created: true) {
                 return path + "/" + fileName
             }
         }
         return nil
     }
 
-    public func remove(withDirectory directory: HXDirectory = .Caches, relativePath: String, fileName: String) {
+    public func remove(with directory: HXDirectory = .Caches, relativePath: String, fileName: String) {
         if let directoryPath = directory.path {
             let path = directoryPath + relativePath + "/" + fileName
             do {
@@ -72,7 +82,7 @@ class HXPathManager: NSObject {
         }
     }
 
-    public func fileExists(atPath path: String, created: Bool = false) -> Bool {
+    public func fileExists(at path: String, created: Bool = false) -> Bool {
         let fileManager = FileManager.default
 
         if fileManager.fileExists(atPath: path) {
@@ -89,7 +99,4 @@ class HXPathManager: NSObject {
         return false
     }
 
-    // MARK: - Private Methods
-
 }
-
