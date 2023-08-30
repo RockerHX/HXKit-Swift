@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Wwi-Oe-uma">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wwi-Oe-uma">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--HXDatePickerViewController-->
         <scene sceneID="cRy-fW-NV6">
             <objects>
-                <viewController storyboardIdentifier="HXDatePickerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wwi-Oe-uma" userLabel="HXDatePickerViewController" customClass="HXDatePickerViewController" customModule="FishHead" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Kp2-zq-aXc"/>
-                        <viewControllerLayoutGuide type="bottom" id="55L-a7-MsP"/>
-                    </layoutGuides>
+                <viewController storyboardIdentifier="HXDatePickerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wwi-Oe-uma" userLabel="HXDatePickerViewController" customClass="HXDatePickerViewController" customModule="Go2Fly" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Asz-J7-Ogf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4aT-e7-4vE" userLabel="Background">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="401.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="549.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -30,9 +26,9 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mmI-9g-ypL" userLabel="Control Container">
-                                <rect key="frame" x="0.0" y="401.5" width="375" height="49"/>
+                                <rect key="frame" x="0.0" y="549.5" width="375" height="49"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kev-xz-Dz5">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kev-xz-Dz5">
                                         <rect key="frame" x="315" y="0.0" width="60" height="49"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="lJq-Ek-vq3"/>
@@ -49,33 +45,33 @@
                                         <color key="textColor" red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdn-UC-jVf" userLabel="Gray Line">
+                                        <rect key="frame" x="0.0" y="48.5" width="375" height="0.5"/>
+                                        <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.5" id="FMu-Yo-UyL"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="kev-xz-Dz5" firstAttribute="top" secondItem="mmI-9g-ypL" secondAttribute="top" id="OS6-c2-zHF"/>
+                                    <constraint firstAttribute="bottom" secondItem="hdn-UC-jVf" secondAttribute="bottom" id="UJo-W2-UTo"/>
                                     <constraint firstItem="Fgb-I8-3gx" firstAttribute="centerY" secondItem="mmI-9g-ypL" secondAttribute="centerY" id="Wuz-f5-qt4"/>
                                     <constraint firstAttribute="trailing" secondItem="kev-xz-Dz5" secondAttribute="trailing" id="gdT-fp-DoN"/>
                                     <constraint firstAttribute="bottom" secondItem="kev-xz-Dz5" secondAttribute="bottom" id="kO5-Ht-WLL"/>
+                                    <constraint firstItem="hdn-UC-jVf" firstAttribute="leading" secondItem="mmI-9g-ypL" secondAttribute="leading" id="l68-IP-GOl"/>
+                                    <constraint firstAttribute="trailing" secondItem="hdn-UC-jVf" secondAttribute="trailing" id="mFW-kb-xoU"/>
                                     <constraint firstAttribute="height" constant="49" id="pW6-Bp-Gv0"/>
                                     <constraint firstItem="Fgb-I8-3gx" firstAttribute="leading" secondItem="mmI-9g-ypL" secondAttribute="leading" constant="16" id="wgG-MN-a0y"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdn-UC-jVf" userLabel="Gray Line">
-                                <rect key="frame" x="0.0" y="450.5" width="375" height="0.5"/>
-                                <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="0.5" id="FMu-Yo-UyL"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUN-AM-Hah" userLabel="Picker Container">
-                                <rect key="frame" x="0.0" y="451" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="598.5" width="375" height="34.5"/>
                                 <subviews>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ihg-e0-cEE">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="216"/>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="ihg-e0-cEE">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="34.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <date key="date" timeIntervalSinceReferenceDate="531737294.61095297">
-                                            <!--2017-11-07 08:48:14 +0000-->
-                                        </date>
                                         <connections>
                                             <action selector="dateChangedWithSender:" destination="Wwi-Oe-uma" eventType="valueChanged" id="U0m-4r-RlR"/>
                                         </connections>
@@ -89,25 +85,34 @@
                                     <constraint firstItem="ihg-e0-cEE" firstAttribute="top" secondItem="GUN-AM-Hah" secondAttribute="top" id="yDI-0f-CJg"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Mk-2e-QnQ" userLabel="Bottom Placeholder">
+                                <rect key="frame" x="0.0" y="633" width="375" height="34"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="cDD-aE-Vqx"/>
+                                </constraints>
+                            </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="DXO-hb-IRn"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="mmI-9g-ypL" secondAttribute="trailing" id="55H-j8-3oM"/>
-                            <constraint firstItem="mmI-9g-ypL" firstAttribute="leading" secondItem="Asz-J7-Ogf" secondAttribute="leading" id="ABy-xm-SMH"/>
-                            <constraint firstItem="4aT-e7-4vE" firstAttribute="leading" secondItem="Asz-J7-Ogf" secondAttribute="leading" id="Dsa-y8-JsJ"/>
-                            <constraint firstAttribute="trailing" secondItem="4aT-e7-4vE" secondAttribute="trailing" id="J2E-z7-iYA"/>
+                            <constraint firstItem="DXO-hb-IRn" firstAttribute="trailing" secondItem="mmI-9g-ypL" secondAttribute="trailing" id="55H-j8-3oM"/>
+                            <constraint firstItem="mmI-9g-ypL" firstAttribute="leading" secondItem="DXO-hb-IRn" secondAttribute="leading" id="ABy-xm-SMH"/>
+                            <constraint firstItem="4aT-e7-4vE" firstAttribute="leading" secondItem="DXO-hb-IRn" secondAttribute="leading" id="Dsa-y8-JsJ"/>
+                            <constraint firstItem="DXO-hb-IRn" firstAttribute="trailing" secondItem="5Mk-2e-QnQ" secondAttribute="trailing" id="GBH-bN-TwT"/>
+                            <constraint firstItem="DXO-hb-IRn" firstAttribute="trailing" secondItem="4aT-e7-4vE" secondAttribute="trailing" id="J2E-z7-iYA"/>
                             <constraint firstItem="mmI-9g-ypL" firstAttribute="top" secondItem="4aT-e7-4vE" secondAttribute="bottom" id="SBU-4B-yRa"/>
-                            <constraint firstItem="hdn-UC-jVf" firstAttribute="leading" secondItem="Asz-J7-Ogf" secondAttribute="leading" id="ZIj-D7-KDZ"/>
-                            <constraint firstAttribute="trailing" secondItem="hdn-UC-jVf" secondAttribute="trailing" id="jfF-JT-0sp"/>
-                            <constraint firstAttribute="trailing" secondItem="GUN-AM-Hah" secondAttribute="trailing" id="khe-w1-gsT"/>
-                            <constraint firstItem="GUN-AM-Hah" firstAttribute="top" secondItem="hdn-UC-jVf" secondAttribute="bottom" id="p2F-ju-SIz"/>
-                            <constraint firstItem="hdn-UC-jVf" firstAttribute="top" secondItem="mmI-9g-ypL" secondAttribute="bottom" id="pP9-Mm-Ked"/>
+                            <constraint firstAttribute="bottom" secondItem="5Mk-2e-QnQ" secondAttribute="bottom" id="T8i-WQ-6aT"/>
+                            <constraint firstItem="5Mk-2e-QnQ" firstAttribute="leading" secondItem="DXO-hb-IRn" secondAttribute="leading" id="aRK-ql-Tbc"/>
+                            <constraint firstItem="DXO-hb-IRn" firstAttribute="trailing" secondItem="GUN-AM-Hah" secondAttribute="trailing" id="khe-w1-gsT"/>
+                            <constraint firstItem="5Mk-2e-QnQ" firstAttribute="top" secondItem="GUN-AM-Hah" secondAttribute="bottom" id="m2K-yv-hhC"/>
                             <constraint firstItem="4aT-e7-4vE" firstAttribute="top" secondItem="Asz-J7-Ogf" secondAttribute="top" id="q3s-1X-vSy"/>
-                            <constraint firstAttribute="bottom" secondItem="GUN-AM-Hah" secondAttribute="bottom" id="rDx-cw-3na"/>
-                            <constraint firstItem="GUN-AM-Hah" firstAttribute="leading" secondItem="Asz-J7-Ogf" secondAttribute="leading" id="xMQ-5Q-4o9"/>
+                            <constraint firstItem="GUN-AM-Hah" firstAttribute="top" secondItem="mmI-9g-ypL" secondAttribute="bottom" id="qKW-na-eKn"/>
+                            <constraint firstItem="GUN-AM-Hah" firstAttribute="leading" secondItem="DXO-hb-IRn" secondAttribute="leading" id="xMQ-5Q-4o9"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomHeight" destination="cDD-aE-Vqx" id="jUw-Ot-aDt"/>
                         <outlet property="controlContainer" destination="mmI-9g-ypL" id="GGi-xI-MLt"/>
                         <outlet property="datePicker" destination="ihg-e0-cEE" id="OTc-g6-BCh"/>
                         <outlet property="enterButton" destination="kev-xz-Dz5" id="j1t-vf-uHX"/>
@@ -124,4 +129,9 @@
             <point key="canvasLocation" x="-354.39999999999998" y="156.97151424287858"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

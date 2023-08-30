@@ -22,37 +22,36 @@ protocol HXDatePickerViewControllerDelegate: AnyObject {
 
 class HXDatePickerViewController: ModalViewController {
 
-    // MARK: - IBOutlet Property -
+    // MARK: - IBOutlet Property
     @IBOutlet weak var datePicker: UIDatePicker?
     @IBOutlet weak var controlContainer: UIView?
     @IBOutlet weak var titleLabel: UILabel?
     @IBOutlet weak var enterButton: UIButton?
+    @IBOutlet weak var bottomHeight: NSLayoutConstraint?
 
-    // MARK: - Public Property -
+    // MARK: - Public Property
     public weak var delegate: HXDatePickerViewControllerDelegate?
     public var datePickerMode: UIDatePicker.Mode?
     public var tinColor: UIColor?
     public var tag: Any?
 
-    // MARK: - Private Property -
+    // MARK: - Private Property
+    private var chosedClosure: ((_ date: Date) -> Void)? = nil
+    fileprivate var style: UIDatePickerStyle? = .inline
 
-    // MARK: - View Controller Life Cycle -
+    // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
     }
 
-    // MARK: - Configuration Methods -
+    // MARK: - Configuration Methods
     private func configure() {
-        if let mode = datePickerMode {
-            datePicker?.datePickerMode = mode
-        }
-        if let color = tinColor {
-            enterButton?.tintColor = color
-        }
-        if let showTitle = title {
-            titleLabel?.text = showTitle
-        }
+        bottomHeight?.constant = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.keyWindow?.safeAreaInsets.bottom ?? 0
+        datePicker?.datePickerMode = datePickerMode ?? .dateAndTime
+        datePicker?.preferredDatePickerStyle = style ?? .inline
+        enterButton?.tintColor = tinColor ?? .black
+        titleLabel?.text = title ?? ""
         // 根据预设语言动态显示时间格式以及语言
         guard let preferredLanguage = Locale.preferredLanguages.first else { return }
         datePicker?.locale = Locale(identifier: preferredLanguage)
@@ -73,7 +72,7 @@ class HXDatePickerViewController: ModalViewController {
 }
 
 
-// MARK: - Event Methods -
+// MARK: - Event Methods
 extension HXDatePickerViewController {
 
     @IBAction func backgroundTaped() {
@@ -85,22 +84,30 @@ extension HXDatePickerViewController {
             guard let this = self else { return }
             guard let date = this.datePicker?.date else { return }
             this.delegate?.datePickerView(this, comfirm: date)
+            self?.chosedClosure?(date)
         }
     }
 
     @IBAction func dateChanged(sender: UIDatePicker) {
         delegate?.datePickerView(self, selected: sender.date)
+        chosedClosure?(sender.date)
+    }
+
+}
+
+// MARK: - Public Methods -
+extension HXDatePickerViewController {
+
+    public func show(on viewController: UIViewController, style: UIDatePickerStyle? = .inline, didChosed: ((_ date: Date) -> Void)? = nil, completion: (() -> Void)? = nil) {
+        self.style = style
+        chosedClosure = didChosed
+        viewController.present(self, animated: true, completion: completion)
     }
 
 }
 
 
-// MARK: - Public Methods -
-extension HXDatePickerViewController {
-}
-
-
-// MARK: - Private Methods -
+// MARK: - Private Methods
 extension HXDatePickerViewController {
 }
 
@@ -113,5 +120,16 @@ extension HXDatePickerViewController: BoardInstance {
         return EasyBoard<DatePicker, HXDatePickerViewController>.viewController(storyBoard: .default)
     }
 
+}
+
+// MARK: - Static Methods -
+extension UIViewController {
+
+    public func showDatePicker(with title: String? = "选择日期", style: UIDatePickerStyle? = .inline, didChosed: ((_ date: Date) -> Void)? = nil, completion: (() -> Void)? = nil) {
+        let datePicker = HXDatePickerViewController.instance()
+        datePicker.title = title
+        datePicker.show(on: self, style: style, didChosed: didChosed, completion: completion)
+    }
+    
 }
 
