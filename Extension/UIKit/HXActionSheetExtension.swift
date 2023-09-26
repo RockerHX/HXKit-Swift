@@ -18,8 +18,8 @@ private struct InputActionAssociationKey {
 
 private extension UIAlertController {
     var completionHandlerWrapper: HXClosureDecorator<(UIAlertController, [UITextField]?)> {
-        get { return associatedObject(forKey: &InputActionAssociationKey.completionHandlerWrapper) as! HXClosureDecorator<(UIAlertController, [UITextField]?)> }
-        set { associate(retainObject: newValue, forKey: &InputActionAssociationKey.completionHandlerWrapper) }
+        get { return associatedObject(forKey: InputActionAssociationKey.completionHandlerWrapper) as! HXClosureDecorator<(UIAlertController, [UITextField]?)> }
+        set { associate(retainObject: newValue, forKey: InputActionAssociationKey.completionHandlerWrapper) }
     }
 }
 
