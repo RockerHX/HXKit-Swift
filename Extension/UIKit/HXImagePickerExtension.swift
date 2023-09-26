@@ -18,8 +18,8 @@ private struct ImagePickerAssociationKey {
 
 private extension UIImagePickerController {
     var completionHandlerWrapper: HXClosureDecorator<(UIImagePickerController, UIImage?)> {
-        get { return associatedObject(forKey: &ImagePickerAssociationKey.completionHandlerWrapper) as! HXClosureDecorator<(UIImagePickerController, UIImage?)> }
-        set { associate(retainObject: newValue, forKey: &ImagePickerAssociationKey.completionHandlerWrapper) }
+        get { return associatedObject(forKey: ImagePickerAssociationKey.completionHandlerWrapper) as! HXClosureDecorator<(UIImagePickerController, UIImage?)> }
+        set { associate(retainObject: newValue, forKey: ImagePickerAssociationKey.completionHandlerWrapper) }
     }
 }
 
